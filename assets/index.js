@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./src/login.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/index.js");
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -1767,7 +1767,7 @@ for (var i = 0; i < DOMIterables.length; i++) {
 
 /***/ }),
 
-/***/ "./src/login.js":
+/***/ "./src/index.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1796,94 +1796,147 @@ var _inherits3 = _interopRequireDefault(_inherits2);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var _antd = antd,
-    Form = _antd.Form,
+    Layout = _antd.Layout,
+    Menu = _antd.Menu,
     Icon = _antd.Icon,
-    Input = _antd.Input,
-    Button = _antd.Button,
-    Checkbox = _antd.Checkbox;
+    Dropdown = _antd.Dropdown;
+var Header = Layout.Header,
+    Sider = Layout.Sider,
+    Content = Layout.Content;
 
-var FormItem = Form.Item;
+var SiderDemo = function (_React$Component) {
+  (0, _inherits3.default)(SiderDemo, _React$Component);
 
-var NormalLoginForm = function (_React$Component) {
-  (0, _inherits3.default)(NormalLoginForm, _React$Component);
+  function SiderDemo() {
+    var _ref;
 
-  function NormalLoginForm() {
-    (0, _classCallCheck3.default)(this, NormalLoginForm);
-    return (0, _possibleConstructorReturn3.default)(this, (NormalLoginForm.__proto__ || (0, _getPrototypeOf2.default)(NormalLoginForm)).apply(this, arguments));
+    var _temp, _this, _ret;
+
+    (0, _classCallCheck3.default)(this, SiderDemo);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = SiderDemo.__proto__ || (0, _getPrototypeOf2.default)(SiderDemo)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+      collapsed: false
+    }, _this.toggle = function () {
+      _this.setState({
+        collapsed: !_this.state.collapsed
+      });
+    }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
   }
 
-  (0, _createClass3.default)(NormalLoginForm, [{
-    key: 'handleSubmit',
-    value: function handleSubmit(e) {
-      e.preventDefault();
-      this.props.form.validateFields(function (err, values) {
-        if (!err) {
-          console.log('Received values of form: ', values);
-        }
-      });
-    }
-  }, {
-    key: 'componentDidMount',
-    value: function componentDidMount() {}
-  }, {
-    key: 'render',
+  (0, _createClass3.default)(SiderDemo, [{
+    key: "render",
     value: function render() {
-      var getFieldDecorator = this.props.form.getFieldDecorator;
-
+      var dropMenu = React.createElement(
+        Menu,
+        null,
+        React.createElement(
+          Menu.Item,
+          null,
+          React.createElement(
+            "a",
+            { target: "_blank", rel: "noopener noreferrer", href: "" },
+            "\u4E2A\u4EBA\u4E2D\u5FC3"
+          )
+        ),
+        React.createElement(
+          Menu.Item,
+          null,
+          React.createElement(
+            "a",
+            { target: "_blank", rel: "noopener noreferrer", href: "" },
+            "\u9000\u51FA"
+          )
+        )
+      );
       return React.createElement(
-        Form,
-        { onSubmit: this.handleSubmit.bind(this), className: 'login-form' },
+        Layout,
+        null,
         React.createElement(
-          FormItem,
-          null,
-          getFieldDecorator('userName', {
-            rules: [{ required: true, message: 'Please input your username!' }]
-          })(React.createElement(Input, { prefix: React.createElement(Icon, { type: 'user', style: { fontSize: 13 } }), placeholder: 'Username' }))
+          Sider,
+          {
+            trigger: null,
+            collapsible: true,
+            collapsed: this.state.collapsed
+          },
+          React.createElement("div", { className: "logo" }),
+          React.createElement(
+            Menu,
+            { theme: "dark", mode: "inline", defaultSelectedKeys: ['1'] },
+            React.createElement(
+              Menu.Item,
+              { key: "1" },
+              React.createElement(Icon, { type: "user" }),
+              React.createElement(
+                "span",
+                null,
+                "nav 1"
+              )
+            ),
+            React.createElement(
+              Menu.Item,
+              { key: "2" },
+              React.createElement(Icon, { type: "video-camera" }),
+              React.createElement(
+                "span",
+                null,
+                "nav 2"
+              )
+            ),
+            React.createElement(
+              Menu.Item,
+              { key: "3" },
+              React.createElement(Icon, { type: "upload" }),
+              React.createElement(
+                "span",
+                null,
+                "nav 3"
+              )
+            )
+          )
         ),
         React.createElement(
-          FormItem,
+          Layout,
           null,
-          getFieldDecorator('password', {
-            rules: [{ required: true, message: 'Please input your Password!' }]
-          })(React.createElement(Input, { prefix: React.createElement(Icon, { type: 'lock', style: { fontSize: 13 } }), type: 'password', placeholder: 'Password' }))
-        ),
-        React.createElement(
-          FormItem,
-          null,
-          getFieldDecorator('remember', {
-            valuePropName: 'checked',
-            initialValue: true
-          })(React.createElement(
-            Checkbox,
-            null,
-            'Remember me'
-          )),
           React.createElement(
-            'a',
-            { className: 'login-form-forgot', href: '' },
-            'Forgot password'
+            Header,
+            { style: { background: '#fff', padding: 0 } },
+            React.createElement(Icon, {
+              className: "trigger",
+              type: this.state.collapsed ? 'menu-unfold' : 'menu-fold',
+              onClick: this.toggle
+            }),
+            React.createElement(
+              "span",
+              { className: "user-logo" },
+              "admin"
+            ),
+            React.createElement(
+              Dropdown,
+              { overlay: dropMenu },
+              React.createElement(
+                "a",
+                { className: "ant-dropdown-link", href: "#" },
+                React.createElement(Icon, { type: "down" })
+              )
+            )
           ),
           React.createElement(
-            Button,
-            { type: 'primary', htmlType: 'submit', className: 'login-form-button' },
-            'Log in'
-          ),
-          'Or ',
-          React.createElement(
-            'a',
-            { href: '' },
-            'register now!'
+            Content,
+            { style: { margin: '24px 16px', padding: 24, background: '#fff', minHeight: 880 } },
+            "Content"
           )
         )
       );
     }
   }]);
-  return NormalLoginForm;
+  return SiderDemo;
 }(React.Component);
 
-var WrappedNormalLoginForm = Form.create()(NormalLoginForm);
-
-ReactDOM.render(React.createElement(WrappedNormalLoginForm, null), document.getElementById('root'));
+ReactDOM.render(React.createElement(SiderDemo, null), document.getElementById('root'));
 
 /***/ })
 
