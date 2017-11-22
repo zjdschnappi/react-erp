@@ -2375,7 +2375,7 @@ var SiderDemo = function (_React$Component2) {
           null,
           React.createElement(
             'a',
-            { target: '_blank', rel: 'noopener noreferrer', href: '/myInfo.html' },
+            { target: '_blank', rel: 'noopener noreferrer', href: 'myInfo.html' },
             '\u4E2A\u4EBA\u4E2D\u5FC3'
           )
         ),

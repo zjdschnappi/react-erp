@@ -202,7 +202,7 @@ class SiderDemo extends React.Component {
     let dropMenu = (
         <Menu>
             <Menu.Item>
-              <a target="_blank" rel="noopener noreferrer" href="/myInfo.html">个人中心</a>
+              <a target="_blank" rel="noopener noreferrer" href="myInfo.html">个人中心</a>
             </Menu.Item>
             <Menu.Item>
               <a target="_blank" rel="noopener noreferrer" href="">退出</a>
