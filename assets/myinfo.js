@@ -70,24 +70,10 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./src/index.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/myinfo.js");
 /******/ })
 /************************************************************************/
 /******/ ({
-
-/***/ "./node_modules/babel-runtime/core-js/array/from.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = { "default": __webpack_require__("./node_modules/core-js/library/fn/array/from.js"), __esModule: true };
-
-/***/ }),
-
-/***/ "./node_modules/babel-runtime/core-js/object/assign.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = { "default": __webpack_require__("./node_modules/core-js/library/fn/object/assign.js"), __esModule: true };
-
-/***/ }),
 
 /***/ "./node_modules/babel-runtime/core-js/object/create.js":
 /***/ (function(module, exports, __webpack_require__) {
@@ -181,36 +167,6 @@ exports.default = function () {
 
 /***/ }),
 
-/***/ "./node_modules/babel-runtime/helpers/extends.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-var _assign = __webpack_require__("./node_modules/babel-runtime/core-js/object/assign.js");
-
-var _assign2 = _interopRequireDefault(_assign);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = _assign2.default || function (target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = arguments[i];
-
-    for (var key in source) {
-      if (Object.prototype.hasOwnProperty.call(source, key)) {
-        target[key] = source[key];
-      }
-    }
-  }
-
-  return target;
-};
-
-/***/ }),
-
 /***/ "./node_modules/babel-runtime/helpers/inherits.js":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -275,34 +231,6 @@ exports.default = function (self, call) {
 
 /***/ }),
 
-/***/ "./node_modules/babel-runtime/helpers/toConsumableArray.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-var _from = __webpack_require__("./node_modules/babel-runtime/core-js/array/from.js");
-
-var _from2 = _interopRequireDefault(_from);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function (arr) {
-  if (Array.isArray(arr)) {
-    for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) {
-      arr2[i] = arr[i];
-    }
-
-    return arr2;
-  } else {
-    return (0, _from2.default)(arr);
-  }
-};
-
-/***/ }),
-
 /***/ "./node_modules/babel-runtime/helpers/typeof.js":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -328,25 +256,6 @@ exports.default = typeof _symbol2.default === "function" && _typeof(_iterator2.d
 } : function (obj) {
   return obj && typeof _symbol2.default === "function" && obj.constructor === _symbol2.default && obj !== _symbol2.default.prototype ? "symbol" : typeof obj === "undefined" ? "undefined" : _typeof(obj);
 };
-
-/***/ }),
-
-/***/ "./node_modules/core-js/library/fn/array/from.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__("./node_modules/core-js/library/modules/es6.string.iterator.js");
-__webpack_require__("./node_modules/core-js/library/modules/es6.array.from.js");
-module.exports = __webpack_require__("./node_modules/core-js/library/modules/_core.js").Array.from;
-
-
-/***/ }),
-
-/***/ "./node_modules/core-js/library/fn/object/assign.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__("./node_modules/core-js/library/modules/es6.object.assign.js");
-module.exports = __webpack_require__("./node_modules/core-js/library/modules/_core.js").Object.assign;
-
 
 /***/ }),
 
@@ -475,36 +384,6 @@ module.exports = function (IS_INCLUDES) {
 
 /***/ }),
 
-/***/ "./node_modules/core-js/library/modules/_classof.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-// getting tag from 19.1.3.6 Object.prototype.toString()
-var cof = __webpack_require__("./node_modules/core-js/library/modules/_cof.js");
-var TAG = __webpack_require__("./node_modules/core-js/library/modules/_wks.js")('toStringTag');
-// ES3 wrong here
-var ARG = cof(function () { return arguments; }()) == 'Arguments';
-
-// fallback for IE11 Script Access Denied error
-var tryGet = function (it, key) {
-  try {
-    return it[key];
-  } catch (e) { /* empty */ }
-};
-
-module.exports = function (it) {
-  var O, T, B;
-  return it === undefined ? 'Undefined' : it === null ? 'Null'
-    // @@toStringTag case
-    : typeof (T = tryGet(O = Object(it), TAG)) == 'string' ? T
-    // builtinTag case
-    : ARG ? cof(O)
-    // ES3 arguments fallback
-    : (B = cof(O)) == 'Object' && typeof O.callee == 'function' ? 'Arguments' : B;
-};
-
-
-/***/ }),
-
 /***/ "./node_modules/core-js/library/modules/_cof.js":
 /***/ (function(module, exports) {
 
@@ -522,22 +401,6 @@ module.exports = function (it) {
 
 var core = module.exports = { version: '2.5.1' };
 if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
-
-
-/***/ }),
-
-/***/ "./node_modules/core-js/library/modules/_create-property.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var $defineProperty = __webpack_require__("./node_modules/core-js/library/modules/_object-dp.js");
-var createDesc = __webpack_require__("./node_modules/core-js/library/modules/_property-desc.js");
-
-module.exports = function (object, index, value) {
-  if (index in object) $defineProperty.f(object, index, createDesc(0, value));
-  else object[index] = value;
-};
 
 
 /***/ }),
@@ -792,21 +655,6 @@ module.exports = Object('z').propertyIsEnumerable(0) ? Object : function (it) {
 
 /***/ }),
 
-/***/ "./node_modules/core-js/library/modules/_is-array-iter.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-// check on default Array iterator
-var Iterators = __webpack_require__("./node_modules/core-js/library/modules/_iterators.js");
-var ITERATOR = __webpack_require__("./node_modules/core-js/library/modules/_wks.js")('iterator');
-var ArrayProto = Array.prototype;
-
-module.exports = function (it) {
-  return it !== undefined && (Iterators.Array === it || ArrayProto[ITERATOR] === it);
-};
-
-
-/***/ }),
-
 /***/ "./node_modules/core-js/library/modules/_is-array.js":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -824,25 +672,6 @@ module.exports = Array.isArray || function isArray(arg) {
 
 module.exports = function (it) {
   return typeof it === 'object' ? it !== null : typeof it === 'function';
-};
-
-
-/***/ }),
-
-/***/ "./node_modules/core-js/library/modules/_iter-call.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-// call something on iterator step with safe closing on error
-var anObject = __webpack_require__("./node_modules/core-js/library/modules/_an-object.js");
-module.exports = function (iterator, fn, value, entries) {
-  try {
-    return entries ? fn(anObject(value)[0], value[1]) : fn(value);
-  // 7.4.6 IteratorClose(iterator, completion)
-  } catch (e) {
-    var ret = iterator['return'];
-    if (ret !== undefined) anObject(ret.call(iterator));
-    throw e;
-  }
 };
 
 
@@ -947,35 +776,6 @@ module.exports = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCE
 
 /***/ }),
 
-/***/ "./node_modules/core-js/library/modules/_iter-detect.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-var ITERATOR = __webpack_require__("./node_modules/core-js/library/modules/_wks.js")('iterator');
-var SAFE_CLOSING = false;
-
-try {
-  var riter = [7][ITERATOR]();
-  riter['return'] = function () { SAFE_CLOSING = true; };
-  // eslint-disable-next-line no-throw-literal
-  Array.from(riter, function () { throw 2; });
-} catch (e) { /* empty */ }
-
-module.exports = function (exec, skipClosing) {
-  if (!skipClosing && !SAFE_CLOSING) return false;
-  var safe = false;
-  try {
-    var arr = [7];
-    var iter = arr[ITERATOR]();
-    iter.next = function () { return { done: safe = true }; };
-    arr[ITERATOR] = function () { return iter; };
-    exec(arr);
-  } catch (e) { /* empty */ }
-  return safe;
-};
-
-
-/***/ }),
-
 /***/ "./node_modules/core-js/library/modules/_iter-step.js":
 /***/ (function(module, exports) {
 
@@ -1058,48 +858,6 @@ var meta = module.exports = {
   getWeak: getWeak,
   onFreeze: onFreeze
 };
-
-
-/***/ }),
-
-/***/ "./node_modules/core-js/library/modules/_object-assign.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-// 19.1.2.1 Object.assign(target, source, ...)
-var getKeys = __webpack_require__("./node_modules/core-js/library/modules/_object-keys.js");
-var gOPS = __webpack_require__("./node_modules/core-js/library/modules/_object-gops.js");
-var pIE = __webpack_require__("./node_modules/core-js/library/modules/_object-pie.js");
-var toObject = __webpack_require__("./node_modules/core-js/library/modules/_to-object.js");
-var IObject = __webpack_require__("./node_modules/core-js/library/modules/_iobject.js");
-var $assign = Object.assign;
-
-// should work with symbols and should have deterministic property order (V8 bug)
-module.exports = !$assign || __webpack_require__("./node_modules/core-js/library/modules/_fails.js")(function () {
-  var A = {};
-  var B = {};
-  // eslint-disable-next-line no-undef
-  var S = Symbol();
-  var K = 'abcdefghijklmnopqrst';
-  A[S] = 7;
-  K.split('').forEach(function (k) { B[k] = k; });
-  return $assign({}, A)[S] != 7 || Object.keys($assign({}, B)).join('') != K;
-}) ? function assign(target, source) { // eslint-disable-line no-unused-vars
-  var T = toObject(target);
-  var aLen = arguments.length;
-  var index = 1;
-  var getSymbols = gOPS.f;
-  var isEnum = pIE.f;
-  while (aLen > index) {
-    var S = IObject(arguments[index++]);
-    var keys = getSymbols ? getKeys(S).concat(getSymbols(S)) : getKeys(S);
-    var length = keys.length;
-    var j = 0;
-    var key;
-    while (length > j) if (isEnum.call(S, key = keys[j++])) T[key] = S[key];
-  } return T;
-} : $assign;
 
 
 /***/ }),
@@ -1605,66 +1363,6 @@ $exports.store = store;
 
 /***/ }),
 
-/***/ "./node_modules/core-js/library/modules/core.get-iterator-method.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-var classof = __webpack_require__("./node_modules/core-js/library/modules/_classof.js");
-var ITERATOR = __webpack_require__("./node_modules/core-js/library/modules/_wks.js")('iterator');
-var Iterators = __webpack_require__("./node_modules/core-js/library/modules/_iterators.js");
-module.exports = __webpack_require__("./node_modules/core-js/library/modules/_core.js").getIteratorMethod = function (it) {
-  if (it != undefined) return it[ITERATOR]
-    || it['@@iterator']
-    || Iterators[classof(it)];
-};
-
-
-/***/ }),
-
-/***/ "./node_modules/core-js/library/modules/es6.array.from.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var ctx = __webpack_require__("./node_modules/core-js/library/modules/_ctx.js");
-var $export = __webpack_require__("./node_modules/core-js/library/modules/_export.js");
-var toObject = __webpack_require__("./node_modules/core-js/library/modules/_to-object.js");
-var call = __webpack_require__("./node_modules/core-js/library/modules/_iter-call.js");
-var isArrayIter = __webpack_require__("./node_modules/core-js/library/modules/_is-array-iter.js");
-var toLength = __webpack_require__("./node_modules/core-js/library/modules/_to-length.js");
-var createProperty = __webpack_require__("./node_modules/core-js/library/modules/_create-property.js");
-var getIterFn = __webpack_require__("./node_modules/core-js/library/modules/core.get-iterator-method.js");
-
-$export($export.S + $export.F * !__webpack_require__("./node_modules/core-js/library/modules/_iter-detect.js")(function (iter) { Array.from(iter); }), 'Array', {
-  // 22.1.2.1 Array.from(arrayLike, mapfn = undefined, thisArg = undefined)
-  from: function from(arrayLike /* , mapfn = undefined, thisArg = undefined */) {
-    var O = toObject(arrayLike);
-    var C = typeof this == 'function' ? this : Array;
-    var aLen = arguments.length;
-    var mapfn = aLen > 1 ? arguments[1] : undefined;
-    var mapping = mapfn !== undefined;
-    var index = 0;
-    var iterFn = getIterFn(O);
-    var length, result, step, iterator;
-    if (mapping) mapfn = ctx(mapfn, aLen > 2 ? arguments[2] : undefined, 2);
-    // if object isn't iterable or it's array with default iterator - use simple case
-    if (iterFn != undefined && !(C == Array && isArrayIter(iterFn))) {
-      for (iterator = iterFn.call(O), result = new C(); !(step = iterator.next()).done; index++) {
-        createProperty(result, index, mapping ? call(iterator, mapfn, [step.value, index], true) : step.value);
-      }
-    } else {
-      length = toLength(O.length);
-      for (result = new C(length); length > index; index++) {
-        createProperty(result, index, mapping ? mapfn(O[index], index) : O[index]);
-      }
-    }
-    result.length = index;
-    return result;
-  }
-});
-
-
-/***/ }),
-
 /***/ "./node_modules/core-js/library/modules/es6.array.iterator.js":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1703,17 +1401,6 @@ Iterators.Arguments = Iterators.Array;
 addToUnscopables('keys');
 addToUnscopables('values');
 addToUnscopables('entries');
-
-
-/***/ }),
-
-/***/ "./node_modules/core-js/library/modules/es6.object.assign.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-// 19.1.3.1 Object.assign(target, source)
-var $export = __webpack_require__("./node_modules/core-js/library/modules/_export.js");
-
-$export($export.S + $export.F, 'Object', { assign: __webpack_require__("./node_modules/core-js/library/modules/_object-assign.js") });
 
 
 /***/ }),
@@ -2080,23 +1767,11 @@ for (var i = 0; i < DOMIterables.length; i++) {
 
 /***/ }),
 
-/***/ "./src/index.js":
+/***/ "./src/myinfo.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-
-var _typeof2 = __webpack_require__("./node_modules/babel-runtime/helpers/typeof.js");
-
-var _typeof3 = _interopRequireDefault(_typeof2);
-
-var _extends2 = __webpack_require__("./node_modules/babel-runtime/helpers/extends.js");
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-var _toConsumableArray2 = __webpack_require__("./node_modules/babel-runtime/helpers/toConsumableArray.js");
-
-var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
 
 var _getPrototypeOf = __webpack_require__("./node_modules/babel-runtime/core-js/object/get-prototype-of.js");
 
@@ -2118,390 +1793,80 @@ var _inherits2 = __webpack_require__("./node_modules/babel-runtime/helpers/inher
 
 var _inherits3 = _interopRequireDefault(_inherits2);
 
-var _data = __webpack_require__("./src/module/data.js");
-
-var _data2 = _interopRequireDefault(_data);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var _antd = antd,
-    Layout = _antd.Layout,
-    Menu = _antd.Menu,
+    Upload = _antd.Upload,
     Icon = _antd.Icon,
-    Dropdown = _antd.Dropdown,
-    Table = _antd.Table,
-    Popconfirm = _antd.Popconfirm;
-var Header = Layout.Header,
-    Sider = Layout.Sider,
-    Content = Layout.Content;
+    message = _antd.message;
 
-// const _data = [];
-// for (let i = 0; i < 46; i++) {
-//   _data.push({
-//     key: i,
-//     name: `Edward King ${i}`,
-//     age: 32,
-//     address: `London, Park Lane no. ${i}`,
-//   });
-// }
 
-var Mtable = function (_React$Component) {
-  (0, _inherits3.default)(Mtable, _React$Component);
+function getBase64(img, callback) {
+  var reader = new FileReader();
+  reader.addEventListener('load', function () {
+    return callback(reader.result);
+  });
+  reader.readAsDataURL(img);
+}
 
-  function Mtable() {
+function beforeUpload(file) {
+  var isJPG = file.type === 'image/jpeg';
+  if (!isJPG) {
+    message.error('You can only upload JPG file!');
+  }
+  var isLt2M = file.size / 1024 / 1024 < 2;
+  if (!isLt2M) {
+    message.error('Image must smaller than 2MB!');
+  }
+  return isJPG && isLt2M;
+}
+
+var Avatar = function (_React$Component) {
+  (0, _inherits3.default)(Avatar, _React$Component);
+
+  function Avatar() {
     var _ref;
 
     var _temp, _this, _ret;
 
-    (0, _classCallCheck3.default)(this, Mtable);
+    (0, _classCallCheck3.default)(this, Avatar);
 
     for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = Mtable.__proto__ || (0, _getPrototypeOf2.default)(Mtable)).call.apply(_ref, [this].concat(args))), _this), _this.columns = [{
-      title: 'ID',
-      dataIndex: 'id'
-    }, {
-      title: '用户名',
-      dataIndex: 'username'
-    }, {
-      title: '手机号',
-      dataIndex: 'cell'
-    }, {
-      title: 'QQ',
-      dataIndex: 'qq'
-    }, {
-      title: '账户余额',
-      dataIndex: 'account'
-    }, {
-      title: '注册时间',
-      dataIndex: 'time'
-    }, {
-      title: '所属销售',
-      dataIndex: 'belong'
-    }, {
-      title: '备注',
-      dataIndex: 'memo'
-    }, {
-      title: '状态',
-      dataIndex: 'status'
-    }, {
-      title: '操作',
-      dataIndex: 'action',
-      render: function render(text, record) {
-        return _this.state.dataSource.length > 1 ? React.createElement(
-          Popconfirm,
-          { title: 'Sure to delete?', onConfirm: function onConfirm() {
-              return _this.onDelete(record.key);
-            } },
-          React.createElement(
-            'a',
-            { href: '#' },
-            'Delete'
-          )
-        ) : null;
-      }
-    }], _this.onDelete = function (key) {
-      var dataSource = [].concat((0, _toConsumableArray3.default)(_this.state.dataSource));
-      _this.setState({ dataSource: dataSource.filter(function (item) {
-          return item.key !== key;
-        }) });
-    }, _this.state = {
-      selectedRowKeys: [], // Check here to configure the default column
-      dataSource: [],
-      pagination: {},
-      loading: false
-    }, _this.onSelectChange = function (selectedRowKeys) {
-      console.log('selectedRowKeys changed: ', selectedRowKeys);
-      _this.setState({ selectedRowKeys: selectedRowKeys });
-    }, _this.handleTableChange = function (pagination, filters, sorter) {
-      var pager = (0, _extends3.default)({}, _this.state.pagination);
-      pager.current = pagination.current;
-      _this.setState({
-        pagination: pager
-      });
-      _this.fetch();
-    }, _this.fetch = function () {
-      var params = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-
-      console.log('params:', params);
-      _this.setState({ loading: true });
-      var self = _this;
-      var xhr = new XMLHttpRequest();
-      xhr.open('GET', 'http://mockjs');
-      xhr.responseType = 'json';
-
-      xhr.onload = function () {
-        console.log((0, _typeof3.default)(JSON.parse(xhr.response)));
-
-        self.setState({
-          loading: false,
-          dataSource: JSON.parse(xhr.response)
+    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = Avatar.__proto__ || (0, _getPrototypeOf2.default)(Avatar)).call.apply(_ref, [this].concat(args))), _this), _this.state = {}, _this.handleChange = function (info) {
+      if (info.file.status === 'done') {
+        // Get this url from response in real world.
+        getBase64(info.file.originFileObj, function (imageUrl) {
+          return _this.setState({ imageUrl: imageUrl });
         });
-      };
-
-      xhr.onerror = function () {
-        console.log("Oops, error");
-      };
-
-      xhr.send();
-      // fetch("http://mockjs",{
-      //     method: "GET",
-      //     body: {
-      //         userName:'',
-      //         cell1:'',
-      //         staffLoginName:'admin',
-      //         qq:'',
-      //         gmtFirstUserRegistStart:'',
-      //         gmtFirstUserRegistEnd:'',
-      //         customerRegisterStatus:'ALL',
-      //         currentPage:params.page||1,
-      //         labelIds:''
-      //
-      //     }
-      // }).then(response => response.json())
-      //   .then(data => {
-      //       console.log(data)
-      //   })
-      //   .catch(e => console.log("Oops, error", e))
+      }
     }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
   }
 
-  (0, _createClass3.default)(Mtable, [{
-    key: 'componentWillMount',
-    value: function componentWillMount() {
-      Mock.mock('http://mockjs', _data2.default);
-    }
-  }, {
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-
-      this.fetch();
-    }
-  }, {
+  (0, _createClass3.default)(Avatar, [{
     key: 'render',
     value: function render() {
-      var selectedRowKeys = this.state.selectedRowKeys;
-
-      var rowSelection = {
-        // selectedRowKeys,
-        // onChange: this.onSelectChange,
-        // hideDefaultSelections: true,
-        // selections: [{
-        //   key: 'all-data',
-        //   text: 'Select All Data',
-        //   onSelect: () => {
-        //     this.setState({
-        //       selectedRowKeys: [...Array(46).keys()], // 0...45
-        //     });
-        //   },
-        // }, {
-        //   key: 'odd',
-        //   text: 'Select Odd Row',
-        //   onSelect: (changableRowKeys) => {
-        //     let newSelectedRowKeys = [];
-        //     newSelectedRowKeys = changableRowKeys.filter((key, index) => {
-        //       if (index % 2 !== 0) {
-        //         return false;
-        //       }
-        //       return true;
-        //     });
-        //     this.setState({ selectedRowKeys: newSelectedRowKeys });
-        //   },
-        // }, {
-        //   key: 'even',
-        //   text: 'Select Even Row',
-        //   onSelect: (changableRowKeys) => {
-        //     let newSelectedRowKeys = [];
-        //     newSelectedRowKeys = changableRowKeys.filter((key, index) => {
-        //       if (index % 2 !== 0) {
-        //         return true;
-        //       }
-        //       return false;
-        //     });
-        //     this.setState({ selectedRowKeys: newSelectedRowKeys });
-        //   },
-        // }],
-        // onSelection: this.onSelection,
-      };
-      return React.createElement(Table, {
-        rowSelection: rowSelection,
-        columns: this.columns,
-        rowKey: function rowKey(record) {
-          return record.registered;
-        },
-        dataSource: this.state.dataSource,
-        pagination: this.state.pagination,
-        loading: this.state.loading,
-        onChange: this.handleTableChange
-      });
-    }
-  }]);
-  return Mtable;
-}(React.Component);
-
-var SiderDemo = function (_React$Component2) {
-  (0, _inherits3.default)(SiderDemo, _React$Component2);
-
-  function SiderDemo() {
-    var _ref2;
-
-    var _temp2, _this2, _ret2;
-
-    (0, _classCallCheck3.default)(this, SiderDemo);
-
-    for (var _len2 = arguments.length, args = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
-      args[_key2] = arguments[_key2];
-    }
-
-    return _ret2 = (_temp2 = (_this2 = (0, _possibleConstructorReturn3.default)(this, (_ref2 = SiderDemo.__proto__ || (0, _getPrototypeOf2.default)(SiderDemo)).call.apply(_ref2, [this].concat(args))), _this2), _this2.state = {
-      collapsed: false
-    }, _this2.toggle = function () {
-      _this2.setState({
-        collapsed: !_this2.state.collapsed
-      });
-    }, _temp2), (0, _possibleConstructorReturn3.default)(_this2, _ret2);
-  }
-
-  (0, _createClass3.default)(SiderDemo, [{
-    key: 'render',
-    value: function render() {
-      var dropMenu = React.createElement(
-        Menu,
-        null,
-        React.createElement(
-          Menu.Item,
-          null,
-          React.createElement(
-            'a',
-            { target: '_blank', rel: 'noopener noreferrer', href: '/myInfo.html' },
-            '\u4E2A\u4EBA\u4E2D\u5FC3'
-          )
-        ),
-        React.createElement(
-          Menu.Item,
-          null,
-          React.createElement(
-            'a',
-            { target: '_blank', rel: 'noopener noreferrer', href: '' },
-            '\u9000\u51FA'
-          )
-        )
-      );
+      var imageUrl = this.state.imageUrl;
       return React.createElement(
-        Layout,
-        null,
-        React.createElement(
-          Sider,
-          {
-            trigger: null,
-            collapsible: true,
-            collapsed: this.state.collapsed
-          },
-          React.createElement('div', { className: 'logo' }),
-          React.createElement(
-            Menu,
-            { theme: 'dark', mode: 'inline', defaultSelectedKeys: ['1'] },
-            React.createElement(
-              Menu.Item,
-              { key: '1' },
-              React.createElement(Icon, { type: 'user' }),
-              React.createElement(
-                'span',
-                null,
-                'nav 1'
-              )
-            ),
-            React.createElement(
-              Menu.Item,
-              { key: '2' },
-              React.createElement(Icon, { type: 'video-camera' }),
-              React.createElement(
-                'span',
-                null,
-                'nav 2'
-              )
-            ),
-            React.createElement(
-              Menu.Item,
-              { key: '3' },
-              React.createElement(Icon, { type: 'upload' }),
-              React.createElement(
-                'span',
-                null,
-                'nav 3'
-              )
-            )
-          )
-        ),
-        React.createElement(
-          Layout,
-          null,
-          React.createElement(
-            Header,
-            { style: { background: '#fff', padding: 0 } },
-            React.createElement(Icon, {
-              className: 'trigger',
-              type: this.state.collapsed ? 'menu-unfold' : 'menu-fold',
-              onClick: this.toggle
-            }),
-            React.createElement(
-              'span',
-              { className: 'user-logo' },
-              'admin'
-            ),
-            React.createElement(
-              Dropdown,
-              { overlay: dropMenu },
-              React.createElement(
-                'a',
-                { className: 'ant-dropdown-link', href: '#' },
-                React.createElement(Icon, { type: 'down' })
-              )
-            )
-          ),
-          React.createElement(
-            Content,
-            { style: { margin: '24px 16px', padding: 24, background: '#fff', minHeight: 880 } },
-            React.createElement(Mtable, null)
-          )
-        )
+        Upload,
+        {
+          className: 'avatar-uploader',
+          name: 'avatar',
+          showUploadList: false,
+          action: 'https://jsonplaceholder.typicode.com/posts/',
+          beforeUpload: beforeUpload,
+          onChange: this.handleChange
+        },
+        imageUrl ? React.createElement('img', { src: imageUrl, alt: '', className: 'avatar' }) : React.createElement(Icon, { type: 'plus', className: 'avatar-uploader-trigger' })
       );
     }
   }]);
-  return SiderDemo;
+  return Avatar;
 }(React.Component);
 
-ReactDOM.render(React.createElement(SiderDemo, null), document.getElementById('root'));
-
-/***/ }),
-
-/***/ "./src/module/data.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-var datas = [];
-for (var i = 0; i < 100; i++) {
-    datas.push({
-        id: i,
-        userName: 'admin' + i,
-        cell: '' + (i + 200),
-        qq: '' + (i + 100),
-        account: '' + i * 100,
-        time: Mock.Random.date('yyyy-MM-dd'),
-        belong: 'admin' + i,
-        memo: 'hello' + i,
-        status: i
-
-    });
-}
-exports.default = datas;
+ReactDOM.render(React.createElement(Avatar, null), document.getElementById('root'));
 
 /***/ })
 
