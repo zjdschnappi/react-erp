@@ -2090,13 +2090,13 @@ var _typeof2 = __webpack_require__("./node_modules/babel-runtime/helpers/typeof.
 
 var _typeof3 = _interopRequireDefault(_typeof2);
 
-var _extends2 = __webpack_require__("./node_modules/babel-runtime/helpers/extends.js");
-
-var _extends3 = _interopRequireDefault(_extends2);
-
 var _toConsumableArray2 = __webpack_require__("./node_modules/babel-runtime/helpers/toConsumableArray.js");
 
 var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
+
+var _extends2 = __webpack_require__("./node_modules/babel-runtime/helpers/extends.js");
+
+var _extends3 = _interopRequireDefault(_extends2);
 
 var _getPrototypeOf = __webpack_require__("./node_modules/babel-runtime/core-js/object/get-prototype-of.js");
 
@@ -2125,6 +2125,11 @@ var _data2 = _interopRequireDefault(_data);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var _antd = antd,
+    Form = _antd.Form,
+    Row = _antd.Row,
+    Col = _antd.Col,
+    Input = _antd.Input,
+    Button = _antd.Button,
     Layout = _antd.Layout,
     Menu = _antd.Menu,
     Icon = _antd.Icon,
@@ -2135,6 +2140,7 @@ var Header = Layout.Header,
     Sider = Layout.Sider,
     Content = Layout.Content;
 
+
 // const _data = [];
 // for (let i = 0; i < 46; i++) {
 //   _data.push({
@@ -2144,22 +2150,132 @@ var Header = Layout.Header,
 //     address: `London, Park Lane no. ${i}`,
 //   });
 // }
+var FormItem = Form.Item;
 
-var Mtable = function (_React$Component) {
-  (0, _inherits3.default)(Mtable, _React$Component);
+var AdvancedSearchForm = function (_React$Component) {
+  (0, _inherits3.default)(AdvancedSearchForm, _React$Component);
 
-  function Mtable() {
+  function AdvancedSearchForm() {
     var _ref;
 
     var _temp, _this, _ret;
 
-    (0, _classCallCheck3.default)(this, Mtable);
+    (0, _classCallCheck3.default)(this, AdvancedSearchForm);
 
     for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = Mtable.__proto__ || (0, _getPrototypeOf2.default)(Mtable)).call.apply(_ref, [this].concat(args))), _this), _this.columns = [{
+    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = AdvancedSearchForm.__proto__ || (0, _getPrototypeOf2.default)(AdvancedSearchForm)).call.apply(_ref, [this].concat(args))), _this), _this.handleReset = function () {
+      _this.props.form.resetFields();
+    }, _this.submitHandler = function () {}, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
+  }
+
+  (0, _createClass3.default)(AdvancedSearchForm, [{
+    key: "getFields",
+
+
+    // To generate mock Form.Item
+    value: function getFields() {
+
+      var formItemLayout = {
+        labelCol: { span: 5 },
+        wrapperCol: { span: 19 }
+      };
+      var children = [];
+      // for (let i = 0; i < 10; i++) {
+      //   children.push(
+      //     <Col span={8} key={i}>
+      //       <FormItem {...formItemLayout} label={`Field ${i}`}>
+      //         {getFieldDecorator(`field-${i}`)(
+      //           <Input placeholder="placeholder" />
+      //         )}
+      //       </FormItem>
+      //     </Col>
+      //   );
+      // }
+      children.push(React.createElement(
+        Col,
+        { span: 8, key: 0 },
+        React.createElement(
+          FormItem,
+          (0, _extends3.default)({}, formItemLayout, { label: "Field " + 0 }),
+          React.createElement(Input, { placeholder: "placeholder", name: "asds" })
+        )
+      ));
+      children.push(React.createElement(
+        Col,
+        { span: 8, key: 1 },
+        React.createElement(
+          FormItem,
+          (0, _extends3.default)({}, formItemLayout, { label: "Field " + 1 }),
+          React.createElement(Input, { placeholder: "placeholder", name: "fffff" })
+        )
+      ));
+      children.push(React.createElement(
+        Col,
+        { span: 8, key: 2 },
+        React.createElement(
+          FormItem,
+          (0, _extends3.default)({}, formItemLayout, { label: "Field " + 2 }),
+          React.createElement(Input, { placeholder: "placeholder", name: "ddddd" })
+        )
+      ));
+      return children;
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return React.createElement(
+        Form,
+        {
+          className: "ant-advanced-search-form",
+          onSubmit: this.handleSearch
+        },
+        React.createElement(
+          Row,
+          { gutter: 40 },
+          this.getFields()
+        ),
+        React.createElement(
+          Row,
+          null,
+          React.createElement(
+            Col,
+            { span: 24, style: { textAlign: 'right' } },
+            React.createElement(
+              Button,
+              { type: "primary", htmlType: "button", onClick: this.props.submitHandler },
+              "Search"
+            ),
+            React.createElement(
+              Button,
+              { style: { marginLeft: 8 } },
+              "Clear"
+            )
+          )
+        )
+      );
+    }
+  }]);
+  return AdvancedSearchForm;
+}(React.Component);
+
+var Mtable = function (_React$Component2) {
+  (0, _inherits3.default)(Mtable, _React$Component2);
+
+  function Mtable() {
+    var _ref2;
+
+    var _temp2, _this2, _ret2;
+
+    (0, _classCallCheck3.default)(this, Mtable);
+
+    for (var _len2 = arguments.length, args = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+      args[_key2] = arguments[_key2];
+    }
+
+    return _ret2 = (_temp2 = (_this2 = (0, _possibleConstructorReturn3.default)(this, (_ref2 = Mtable.__proto__ || (0, _getPrototypeOf2.default)(Mtable)).call.apply(_ref2, [this].concat(args))), _this2), _this2.columns = [{
       title: 'ID',
       dataIndex: 'id'
     }, {
@@ -2190,44 +2306,46 @@ var Mtable = function (_React$Component) {
       title: '操作',
       dataIndex: 'action',
       render: function render(text, record) {
-        return _this.state.dataSource.length > 1 ? React.createElement(
+        return _this2.state.dataSource.length > 1 ? React.createElement(
           Popconfirm,
-          { title: 'Sure to delete?', onConfirm: function onConfirm() {
-              return _this.onDelete(record.key);
+          { title: "Sure to delete?", onConfirm: function onConfirm() {
+              return _this2.onDelete(record.key);
             } },
           React.createElement(
-            'a',
-            { href: '#' },
-            'Delete'
+            "a",
+            { href: "#" },
+            "Delete"
           )
         ) : null;
       }
-    }], _this.onDelete = function (key) {
-      var dataSource = [].concat((0, _toConsumableArray3.default)(_this.state.dataSource));
-      _this.setState({ dataSource: dataSource.filter(function (item) {
+    }], _this2.onDelete = function (key) {
+      var dataSource = [].concat((0, _toConsumableArray3.default)(_this2.state.dataSource));
+      _this2.setState({ dataSource: dataSource.filter(function (item) {
           return item.key !== key;
         }) });
-    }, _this.state = {
+    }, _this2.state = {
       selectedRowKeys: [], // Check here to configure the default column
       dataSource: [],
-      pagination: {},
+      pagination: {
+        pageSize: 20
+      },
       loading: false
-    }, _this.onSelectChange = function (selectedRowKeys) {
+    }, _this2.onSelectChange = function (selectedRowKeys) {
       console.log('selectedRowKeys changed: ', selectedRowKeys);
-      _this.setState({ selectedRowKeys: selectedRowKeys });
-    }, _this.handleTableChange = function (pagination, filters, sorter) {
-      var pager = (0, _extends3.default)({}, _this.state.pagination);
+      _this2.setState({ selectedRowKeys: selectedRowKeys });
+    }, _this2.handleTableChange = function (pagination, filters, sorter) {
+      var pager = (0, _extends3.default)({}, _this2.state.pagination);
       pager.current = pagination.current;
-      _this.setState({
+      _this2.setState({
         pagination: pager
       });
-      _this.fetch();
-    }, _this.fetch = function () {
+      _this2.fetch();
+    }, _this2.fetch = function () {
       var params = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
       console.log('params:', params);
-      _this.setState({ loading: true });
-      var self = _this;
+      _this2.setState({ loading: true });
+      var self = _this2;
       var xhr = new XMLHttpRequest();
       xhr.open('GET', 'http://mockjs');
       xhr.responseType = 'json';
@@ -2265,22 +2383,22 @@ var Mtable = function (_React$Component) {
       //       console.log(data)
       //   })
       //   .catch(e => console.log("Oops, error", e))
-    }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
+    }, _temp2), (0, _possibleConstructorReturn3.default)(_this2, _ret2);
   }
 
   (0, _createClass3.default)(Mtable, [{
-    key: 'componentWillMount',
+    key: "componentWillMount",
     value: function componentWillMount() {
       Mock.mock('http://mockjs', _data2.default);
     }
   }, {
-    key: 'componentDidMount',
+    key: "componentDidMount",
     value: function componentDidMount() {
 
       this.fetch();
     }
   }, {
-    key: 'render',
+    key: "render",
     value: function render() {
       var selectedRowKeys = this.state.selectedRowKeys;
 
@@ -2341,31 +2459,31 @@ var Mtable = function (_React$Component) {
   return Mtable;
 }(React.Component);
 
-var SiderDemo = function (_React$Component2) {
-  (0, _inherits3.default)(SiderDemo, _React$Component2);
+var App = function (_React$Component3) {
+  (0, _inherits3.default)(App, _React$Component3);
 
-  function SiderDemo() {
-    var _ref2;
+  function App() {
+    var _ref3;
 
-    var _temp2, _this2, _ret2;
+    var _temp3, _this3, _ret3;
 
-    (0, _classCallCheck3.default)(this, SiderDemo);
+    (0, _classCallCheck3.default)(this, App);
 
-    for (var _len2 = arguments.length, args = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
-      args[_key2] = arguments[_key2];
+    for (var _len3 = arguments.length, args = Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
+      args[_key3] = arguments[_key3];
     }
 
-    return _ret2 = (_temp2 = (_this2 = (0, _possibleConstructorReturn3.default)(this, (_ref2 = SiderDemo.__proto__ || (0, _getPrototypeOf2.default)(SiderDemo)).call.apply(_ref2, [this].concat(args))), _this2), _this2.state = {
+    return _ret3 = (_temp3 = (_this3 = (0, _possibleConstructorReturn3.default)(this, (_ref3 = App.__proto__ || (0, _getPrototypeOf2.default)(App)).call.apply(_ref3, [this].concat(args))), _this3), _this3.state = {
       collapsed: false
-    }, _this2.toggle = function () {
-      _this2.setState({
-        collapsed: !_this2.state.collapsed
+    }, _this3.toggle = function () {
+      _this3.setState({
+        collapsed: !_this3.state.collapsed
       });
-    }, _temp2), (0, _possibleConstructorReturn3.default)(_this2, _ret2);
+    }, _temp3), (0, _possibleConstructorReturn3.default)(_this3, _ret3);
   }
 
-  (0, _createClass3.default)(SiderDemo, [{
-    key: 'render',
+  (0, _createClass3.default)(App, [{
+    key: "render",
     value: function render() {
       var dropMenu = React.createElement(
         Menu,
@@ -2374,18 +2492,18 @@ var SiderDemo = function (_React$Component2) {
           Menu.Item,
           null,
           React.createElement(
-            'a',
-            { target: '_blank', rel: 'noopener noreferrer', href: 'myInfo.html' },
-            '\u4E2A\u4EBA\u4E2D\u5FC3'
+            "a",
+            { target: "_blank", rel: "noopener noreferrer", href: "myInfo.html" },
+            "\u4E2A\u4EBA\u4E2D\u5FC3"
           )
         ),
         React.createElement(
           Menu.Item,
           null,
           React.createElement(
-            'a',
-            { target: '_blank', rel: 'noopener noreferrer', href: '' },
-            '\u9000\u51FA'
+            "a",
+            { target: "_blank", rel: "noopener noreferrer", href: "" },
+            "\u9000\u51FA"
           )
         )
       );
@@ -2399,38 +2517,38 @@ var SiderDemo = function (_React$Component2) {
             collapsible: true,
             collapsed: this.state.collapsed
           },
-          React.createElement('div', { className: 'logo' }),
+          React.createElement("div", { className: "logo" }),
           React.createElement(
             Menu,
-            { theme: 'dark', mode: 'inline', defaultSelectedKeys: ['1'] },
+            { theme: "dark", mode: "inline", defaultSelectedKeys: ['1'] },
             React.createElement(
               Menu.Item,
-              { key: '1' },
-              React.createElement(Icon, { type: 'user' }),
+              { key: "1" },
+              React.createElement(Icon, { type: "user" }),
               React.createElement(
-                'span',
+                "span",
                 null,
-                'nav 1'
+                "nav 1"
               )
             ),
             React.createElement(
               Menu.Item,
-              { key: '2' },
-              React.createElement(Icon, { type: 'video-camera' }),
+              { key: "2" },
+              React.createElement(Icon, { type: "video-camera" }),
               React.createElement(
-                'span',
+                "span",
                 null,
-                'nav 2'
+                "nav 2"
               )
             ),
             React.createElement(
               Menu.Item,
-              { key: '3' },
-              React.createElement(Icon, { type: 'upload' }),
+              { key: "3" },
+              React.createElement(Icon, { type: "upload" }),
               React.createElement(
-                'span',
+                "span",
                 null,
-                'nav 3'
+                "nav 3"
               )
             )
           )
@@ -2442,38 +2560,39 @@ var SiderDemo = function (_React$Component2) {
             Header,
             { style: { background: '#fff', padding: 0 } },
             React.createElement(Icon, {
-              className: 'trigger',
+              className: "trigger",
               type: this.state.collapsed ? 'menu-unfold' : 'menu-fold',
               onClick: this.toggle
             }),
             React.createElement(
-              'span',
-              { className: 'user-logo' },
-              'admin'
+              "span",
+              { className: "user-logo" },
+              "admin"
             ),
             React.createElement(
               Dropdown,
               { overlay: dropMenu },
               React.createElement(
-                'a',
-                { className: 'ant-dropdown-link', href: '#' },
-                React.createElement(Icon, { type: 'down' })
+                "a",
+                { className: "ant-dropdown-link", href: "#" },
+                React.createElement(Icon, { type: "down" })
               )
             )
           ),
           React.createElement(
             Content,
             { style: { margin: '24px 16px', padding: 24, background: '#fff', minHeight: 880 } },
+            React.createElement(AdvancedSearchForm, null),
             React.createElement(Mtable, null)
           )
         )
       );
     }
   }]);
-  return SiderDemo;
+  return App;
 }(React.Component);
 
-ReactDOM.render(React.createElement(SiderDemo, null), document.getElementById('root'));
+ReactDOM.render(React.createElement(App, null), document.getElementById('root'));
 
 /***/ }),
 

@@ -1,4 +1,4 @@
-const { Layout, Menu, Icon, Dropdown, Table, Popconfirm} = antd;
+const { Form, Row, Col, Input, Button, Layout, Menu, Icon, Dropdown, Table, Popconfirm} = antd;
 const { Header, Sider, Content } = Layout;
 import Mockdata from './module/data.js';
 
@@ -11,7 +11,85 @@ import Mockdata from './module/data.js';
 //     address: `London, Park Lane no. ${i}`,
 //   });
 // }
+const FormItem = Form.Item;
 
+class AdvancedSearchForm extends React.Component {
+
+  handleReset = () => {
+    this.props.form.resetFields();
+  }
+  submitHandler = () => {
+      
+  }
+
+  // To generate mock Form.Item
+  getFields() {
+
+    const formItemLayout = {
+      labelCol: { span: 5 },
+      wrapperCol: { span: 19 },
+    };
+    const children = [];
+    // for (let i = 0; i < 10; i++) {
+    //   children.push(
+    //     <Col span={8} key={i}>
+    //       <FormItem {...formItemLayout} label={`Field ${i}`}>
+    //         {getFieldDecorator(`field-${i}`)(
+    //           <Input placeholder="placeholder" />
+    //         )}
+    //       </FormItem>
+    //     </Col>
+    //   );
+    // }
+    children.push(
+        <Col span={8} key={0}>
+          <FormItem {...formItemLayout} label={`Field ${0}`}>
+
+              <Input placeholder="placeholder" name="asds"/>
+
+          </FormItem>
+        </Col>
+      );
+      children.push(
+          <Col span={8} key={1}>
+            <FormItem {...formItemLayout} label={`Field ${1}`}>
+
+                <Input placeholder="placeholder" name="fffff"/>
+
+            </FormItem>
+          </Col>
+        );
+        children.push(
+            <Col span={8} key={2}>
+              <FormItem {...formItemLayout} label={`Field ${2}`}>
+
+                  <Input placeholder="placeholder" name="ddddd"/>
+
+              </FormItem>
+            </Col>
+          );
+    return children;
+  }
+
+  render() {
+    return (
+      <Form
+        className="ant-advanced-search-form"
+        onSubmit={this.handleSearch}
+      >
+        <Row gutter={40}>{this.getFields()}</Row>
+        <Row>
+          <Col span={24} style={{ textAlign: 'right' }}>
+            <Button type="primary" htmlType="button" onClick={this.props.submitHandler}>Search</Button>
+            <Button style={{ marginLeft: 8 }} >
+              Clear
+            </Button>
+          </Col>
+        </Row>
+      </Form>
+    );
+  }
+}
 class Mtable extends React.Component {
 
     columns = [{
@@ -68,7 +146,9 @@ class Mtable extends React.Component {
   state = {
     selectedRowKeys: [], // Check here to configure the default column
     dataSource: [],
-    pagination: {},
+    pagination: {
+        pageSize:20
+    },
     loading: false,
   };
   onSelectChange = (selectedRowKeys) => {
@@ -189,7 +269,7 @@ class Mtable extends React.Component {
   }
 }
 
-class SiderDemo extends React.Component {
+class App extends React.Component {
   state = {
     collapsed: false,
   };
@@ -247,6 +327,7 @@ class SiderDemo extends React.Component {
              </Dropdown>
           </Header>
           <Content style={{ margin: '24px 16px', padding: 24, background: '#fff', minHeight: 880 }}>
+            <AdvancedSearchForm />
             <Mtable />
           </Content>
         </Layout>
@@ -254,5 +335,4 @@ class SiderDemo extends React.Component {
     );
   }
 }
-
-ReactDOM.render(<SiderDemo />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'));
