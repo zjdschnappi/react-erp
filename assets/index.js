@@ -2086,10 +2086,6 @@ for (var i = 0; i < DOMIterables.length; i++) {
 "use strict";
 
 
-var _typeof2 = __webpack_require__("./node_modules/babel-runtime/helpers/typeof.js");
-
-var _typeof3 = _interopRequireDefault(_typeof2);
-
 var _toConsumableArray2 = __webpack_require__("./node_modules/babel-runtime/helpers/toConsumableArray.js");
 
 var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
@@ -2141,15 +2137,6 @@ var Header = Layout.Header,
     Content = Layout.Content;
 
 
-// const _data = [];
-// for (let i = 0; i < 46; i++) {
-//   _data.push({
-//     key: i,
-//     name: `Edward King ${i}`,
-//     age: 32,
-//     address: `London, Park Lane no. ${i}`,
-//   });
-// }
 var FormItem = Form.Item;
 
 var AdvancedSearchForm = function (_React$Component) {
@@ -2168,7 +2155,9 @@ var AdvancedSearchForm = function (_React$Component) {
 
     return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = AdvancedSearchForm.__proto__ || (0, _getPrototypeOf2.default)(AdvancedSearchForm)).call.apply(_ref, [this].concat(args))), _this), _this.handleReset = function () {
       _this.props.form.resetFields();
-    }, _this.submitHandler = function () {}, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
+    }, _this.submitHandler = function () {
+      _this.props.submitHandler();
+    }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
   }
 
   (0, _createClass3.default)(AdvancedSearchForm, [{
@@ -2183,17 +2172,6 @@ var AdvancedSearchForm = function (_React$Component) {
         wrapperCol: { span: 19 }
       };
       var children = [];
-      // for (let i = 0; i < 10; i++) {
-      //   children.push(
-      //     <Col span={8} key={i}>
-      //       <FormItem {...formItemLayout} label={`Field ${i}`}>
-      //         {getFieldDecorator(`field-${i}`)(
-      //           <Input placeholder="placeholder" />
-      //         )}
-      //       </FormItem>
-      //     </Col>
-      //   );
-      // }
       children.push(React.createElement(
         Col,
         { span: 8, key: 0 },
@@ -2245,12 +2223,12 @@ var AdvancedSearchForm = function (_React$Component) {
             { span: 24, style: { textAlign: 'right' } },
             React.createElement(
               Button,
-              { type: "primary", htmlType: "button", onClick: this.props.submitHandler },
+              { type: "primary", htmlType: "button", onClick: this.submitHandler },
               "Search"
             ),
             React.createElement(
               Button,
-              { style: { marginLeft: 8 } },
+              { style: { marginLeft: 8 }, onClick: this.handleReset },
               "Clear"
             )
           )
@@ -2261,21 +2239,45 @@ var AdvancedSearchForm = function (_React$Component) {
   return AdvancedSearchForm;
 }(React.Component);
 
+var Formdemo = Form.create()(AdvancedSearchForm);
+
 var Mtable = function (_React$Component2) {
   (0, _inherits3.default)(Mtable, _React$Component2);
 
-  function Mtable() {
-    var _ref2;
-
-    var _temp2, _this2, _ret2;
-
+  function Mtable(props) {
     (0, _classCallCheck3.default)(this, Mtable);
 
-    for (var _len2 = arguments.length, args = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
-      args[_key2] = arguments[_key2];
-    }
+    var _this2 = (0, _possibleConstructorReturn3.default)(this, (Mtable.__proto__ || (0, _getPrototypeOf2.default)(Mtable)).call(this, props));
 
-    return _ret2 = (_temp2 = (_this2 = (0, _possibleConstructorReturn3.default)(this, (_ref2 = Mtable.__proto__ || (0, _getPrototypeOf2.default)(Mtable)).call.apply(_ref2, [this].concat(args))), _this2), _this2.columns = [{
+    _this2.onDelete = function (key) {
+      // const dataSource = [...this.props.params.dataSource];
+      // this.setState({ dataSource: dataSource.filter(item => item.key !== key) });
+      _this2.props.onDelete(key);
+    };
+
+    _this2.onSelectChange = function (selectedRowKeys) {
+      console.log('selectedRowKeys changed: ', selectedRowKeys);
+      _this2.setState({ selectedRowKeys: selectedRowKeys });
+    };
+
+    _this2.handleTableChange = function (pagination, filters, sorter) {
+      var pager = (0, _extends3.default)({}, _this2.state.pagination);
+      pager.current = pagination.current;
+      _this2.setState({
+        pagination: pager
+      });
+      // this.fetch();
+      _this2.props.params.submitHandler();
+    };
+
+    _this2.state = {
+      selectedRowKeys: [], // Check here to configure the default column
+      dataSource: [],
+      pagination: {
+        pageSize: 20
+      }
+    };
+    _this2.columns = [{
       title: 'ID',
       dataIndex: 'id'
     }, {
@@ -2306,7 +2308,7 @@ var Mtable = function (_React$Component2) {
       title: '操作',
       dataIndex: 'action',
       render: function render(text, record) {
-        return _this2.state.dataSource.length > 1 ? React.createElement(
+        return _this2.props.params.dataSource.length > 1 ? React.createElement(
           Popconfirm,
           { title: "Sure to delete?", onConfirm: function onConfirm() {
               return _this2.onDelete(record.key);
@@ -2318,40 +2320,146 @@ var Mtable = function (_React$Component2) {
           )
         ) : null;
       }
-    }], _this2.onDelete = function (key) {
-      var dataSource = [].concat((0, _toConsumableArray3.default)(_this2.state.dataSource));
-      _this2.setState({ dataSource: dataSource.filter(function (item) {
-          return item.key !== key;
-        }) });
-    }, _this2.state = {
-      selectedRowKeys: [], // Check here to configure the default column
-      dataSource: [],
-      pagination: {
-        pageSize: 20
-      },
-      loading: false
-    }, _this2.onSelectChange = function (selectedRowKeys) {
-      console.log('selectedRowKeys changed: ', selectedRowKeys);
-      _this2.setState({ selectedRowKeys: selectedRowKeys });
-    }, _this2.handleTableChange = function (pagination, filters, sorter) {
-      var pager = (0, _extends3.default)({}, _this2.state.pagination);
-      pager.current = pagination.current;
-      _this2.setState({
-        pagination: pager
+    }];
+    return _this2;
+  }
+
+  //   loading: false,
+  // };
+
+
+  (0, _createClass3.default)(Mtable, [{
+    key: "render",
+
+    // fetch = (params = {}) => {
+    //   console.log('params:', params);
+    //   this.setState({ loading: true });
+    //   let self = this;
+    //   let xhr = new XMLHttpRequest();
+    //       xhr.open('GET', 'http://mockjs');
+    //       xhr.responseType = 'json';
+    //
+    //       xhr.onload = function() {
+    //         console.log(typeof JSON.parse(xhr.response));
+    //
+    //            self.setState({
+    //              loading: false,
+    //              dataSource: JSON.parse(xhr.response)
+    //            });
+    //       };
+    //
+    //       xhr.onerror = function() {
+    //         console.log("Oops, error");
+    //       };
+    //
+    //       xhr.send();
+    //   // fetch("http://mockjs",{
+    //   //     method: "GET",
+    //   //     body: {
+    //   //         userName:'',
+    //   //         cell1:'',
+    //   //         staffLoginName:'admin',
+    //   //         qq:'',
+    //   //         gmtFirstUserRegistStart:'',
+    //   //         gmtFirstUserRegistEnd:'',
+    //   //         customerRegisterStatus:'ALL',
+    //   //         currentPage:params.page||1,
+    //   //         labelIds:''
+    //   //
+    //   //     }
+    //   // }).then(response => response.json())
+    //   //   .then(data => {
+    //   //       console.log(data)
+    //   //   })
+    //   //   .catch(e => console.log("Oops, error", e))
+    //     }
+    value: function render() {
+      var _this3 = this;
+
+      var selectedRowKeys = this.state.selectedRowKeys;
+
+      var rowSelection = {
+        selectedRowKeys: selectedRowKeys,
+        onChange: this.onSelectChange,
+        hideDefaultSelections: true,
+        selections: [{
+          key: 'all-data',
+          text: 'Select All Data',
+          onSelect: function onSelect() {
+            _this3.setState({
+              selectedRowKeys: [].concat((0, _toConsumableArray3.default)(Array(46).keys())) // 0...45
+            });
+          }
+        }, {
+          key: 'odd',
+          text: 'Select Odd Row',
+          onSelect: function onSelect(changableRowKeys) {
+            var newSelectedRowKeys = [];
+            newSelectedRowKeys = changableRowKeys.filter(function (key, index) {
+              if (index % 2 !== 0) {
+                return false;
+              }
+              return true;
+            });
+            _this3.setState({ selectedRowKeys: newSelectedRowKeys });
+          }
+        }, {
+          key: 'even',
+          text: 'Select Even Row',
+          onSelect: function onSelect(changableRowKeys) {
+            var newSelectedRowKeys = [];
+            newSelectedRowKeys = changableRowKeys.filter(function (key, index) {
+              if (index % 2 !== 0) {
+                return true;
+              }
+              return false;
+            });
+            _this3.setState({ selectedRowKeys: newSelectedRowKeys });
+          }
+        }],
+        onSelection: this.onSelection
+      };
+      return React.createElement(Table, {
+        rowSelection: rowSelection,
+        columns: this.columns,
+        rowKey: function rowKey(record) {
+          return record.registered;
+        },
+        dataSource: this.props.params.dataSource,
+        pagination: this.state.pagination,
+        loading: this.props.params.loading,
+        onChange: this.handleTableChange
       });
-      _this2.fetch();
-    }, _this2.fetch = function () {
+    }
+  }]);
+  return Mtable;
+}(React.Component);
+
+var App = function (_React$Component3) {
+  (0, _inherits3.default)(App, _React$Component3);
+
+  function App(props) {
+    (0, _classCallCheck3.default)(this, App);
+
+    var _this4 = (0, _possibleConstructorReturn3.default)(this, (App.__proto__ || (0, _getPrototypeOf2.default)(App)).call(this, props));
+
+    _this4.toggle = function () {
+      _this4.setState({
+        collapsed: !_this4.state.collapsed
+      });
+    };
+
+    _this4.fetch = function () {
       var params = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
       console.log('params:', params);
-      _this2.setState({ loading: true });
-      var self = _this2;
+      _this4.setState({ loading: true });
+      var self = _this4;
       var xhr = new XMLHttpRequest();
       xhr.open('GET', 'http://mockjs');
       xhr.responseType = 'json';
 
       xhr.onload = function () {
-        console.log((0, _typeof3.default)(JSON.parse(xhr.response)));
 
         self.setState({
           loading: false,
@@ -2383,106 +2491,38 @@ var Mtable = function (_React$Component2) {
       //       console.log(data)
       //   })
       //   .catch(e => console.log("Oops, error", e))
-    }, _temp2), (0, _possibleConstructorReturn3.default)(_this2, _ret2);
+    };
+
+    _this4.state = {
+      collapsed: false,
+      loading: false,
+      dataSource: []
+    };
+    _this4.submitHandler = _this4.submitHandler.bind(_this4);
+    _this4.fetch = _this4.fetch.bind(_this4);
+    _this4.onDelete = _this4.onDelete.bind(_this4);
+    return _this4;
   }
 
-  (0, _createClass3.default)(Mtable, [{
+  (0, _createClass3.default)(App, [{
+    key: "onDelete",
+    value: function onDelete(key) {
+      var dataSource = [].concat((0, _toConsumableArray3.default)(this.state.dataSource));
+      this.setState({ dataSource: dataSource.filter(function (item) {
+          return item.key !== key;
+        }) });
+    }
+  }, {
+    key: "submitHandler",
+    value: function submitHandler() {
+      this.fetch();
+    }
+  }, {
     key: "componentWillMount",
     value: function componentWillMount() {
       Mock.mock('http://mockjs', _data2.default);
     }
   }, {
-    key: "componentDidMount",
-    value: function componentDidMount() {
-
-      this.fetch();
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var selectedRowKeys = this.state.selectedRowKeys;
-
-      var rowSelection = {
-        // selectedRowKeys,
-        // onChange: this.onSelectChange,
-        // hideDefaultSelections: true,
-        // selections: [{
-        //   key: 'all-data',
-        //   text: 'Select All Data',
-        //   onSelect: () => {
-        //     this.setState({
-        //       selectedRowKeys: [...Array(46).keys()], // 0...45
-        //     });
-        //   },
-        // }, {
-        //   key: 'odd',
-        //   text: 'Select Odd Row',
-        //   onSelect: (changableRowKeys) => {
-        //     let newSelectedRowKeys = [];
-        //     newSelectedRowKeys = changableRowKeys.filter((key, index) => {
-        //       if (index % 2 !== 0) {
-        //         return false;
-        //       }
-        //       return true;
-        //     });
-        //     this.setState({ selectedRowKeys: newSelectedRowKeys });
-        //   },
-        // }, {
-        //   key: 'even',
-        //   text: 'Select Even Row',
-        //   onSelect: (changableRowKeys) => {
-        //     let newSelectedRowKeys = [];
-        //     newSelectedRowKeys = changableRowKeys.filter((key, index) => {
-        //       if (index % 2 !== 0) {
-        //         return true;
-        //       }
-        //       return false;
-        //     });
-        //     this.setState({ selectedRowKeys: newSelectedRowKeys });
-        //   },
-        // }],
-        // onSelection: this.onSelection,
-      };
-      return React.createElement(Table, {
-        rowSelection: rowSelection,
-        columns: this.columns,
-        rowKey: function rowKey(record) {
-          return record.registered;
-        },
-        dataSource: this.state.dataSource,
-        pagination: this.state.pagination,
-        loading: this.state.loading,
-        onChange: this.handleTableChange
-      });
-    }
-  }]);
-  return Mtable;
-}(React.Component);
-
-var App = function (_React$Component3) {
-  (0, _inherits3.default)(App, _React$Component3);
-
-  function App() {
-    var _ref3;
-
-    var _temp3, _this3, _ret3;
-
-    (0, _classCallCheck3.default)(this, App);
-
-    for (var _len3 = arguments.length, args = Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
-      args[_key3] = arguments[_key3];
-    }
-
-    return _ret3 = (_temp3 = (_this3 = (0, _possibleConstructorReturn3.default)(this, (_ref3 = App.__proto__ || (0, _getPrototypeOf2.default)(App)).call.apply(_ref3, [this].concat(args))), _this3), _this3.state = {
-      collapsed: false
-    }, _this3.toggle = function () {
-      _this3.setState({
-        collapsed: !_this3.state.collapsed
-      });
-    }, _temp3), (0, _possibleConstructorReturn3.default)(_this3, _ret3);
-  }
-
-  (0, _createClass3.default)(App, [{
     key: "render",
     value: function render() {
       var dropMenu = React.createElement(
@@ -2582,8 +2622,8 @@ var App = function (_React$Component3) {
           React.createElement(
             Content,
             { style: { margin: '24px 16px', padding: 24, background: '#fff', minHeight: 880 } },
-            React.createElement(AdvancedSearchForm, null),
-            React.createElement(Mtable, null)
+            React.createElement(Formdemo, { submitHandler: this.submitHandler }),
+            React.createElement(Mtable, { onDelete: this.onDelete, params: { loading: this.state.loading, dataSource: this.state.dataSource, submitHandler: this.submitHandler } })
           )
         )
       );
