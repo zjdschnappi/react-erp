@@ -16,7 +16,7 @@ var folder = path.resolve('./src')
 var files = fs.readdirSync(folder);
 
 var jsFileMap = {
-	vendor: ['antd','react','react-dom']
+	// vendor: ['antd','react','react-dom']
 }
 files.forEach(file => {
 	if (/.js$/.test(file) && file.indexOf('1') === -1) {
@@ -29,7 +29,7 @@ module.exports = {
 	// The standard entry point and output config
 	//每个页面的js文件
 	entry: jsFileMap,
-	externals: {
+	externals: {//不打包以下模块，主要用在在scipt标签外部引入插件的时候
 		// 'react': 'React',
    		// 'react-dom':'ReactDOM',
 		// 'antd':'antd'
@@ -127,8 +127,12 @@ module.exports = {
 	      filename: 'css/[name].css'
 	    }),
 		new webpack.optimize.CommonsChunkPlugin({
-			name: "vendor"
-			// chunks: ["home", "pages.chunk", "detail", "list"]
+			name: "vendor",//提取公共模块到vendor.js
+			minChunks: ({ resource }) => (
+			    resource &&
+			    resource.indexOf('node_modules') >= 0 &&
+			    resource.match(/\.js$/)
+			  ),
 		}),
 		new webpack.DefinePlugin({
 		  "process.env": {
