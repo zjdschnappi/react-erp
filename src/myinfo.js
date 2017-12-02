@@ -1,4 +1,6 @@
-const { Upload, Icon, message } = antd;
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Upload, Icon, message } from 'antd';
 
 function getBase64(img, callback) {
   const reader = new FileReader();

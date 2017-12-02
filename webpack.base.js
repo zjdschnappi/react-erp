@@ -15,7 +15,9 @@ var folder = path.resolve('./src')
 
 var files = fs.readdirSync(folder);
 
-var jsFileMap = {}
+var jsFileMap = {
+	vendor: ['antd','react','react-dom']
+}
 files.forEach(file => {
 	if (/.js$/.test(file) && file.indexOf('1') === -1) {
 		const name = file.replace(/.js$/, '')
@@ -28,10 +30,12 @@ module.exports = {
 	//每个页面的js文件
 	entry: jsFileMap,
 	externals: {
-		vue: 'Vue'
+		// 'react': 'React',
+   		// 'react-dom':'ReactDOM',
+		// 'antd':'antd'
 	},
 	resolve: {
-		extensions: ['.js', '.vue'],
+		extensions: ['.js', '.jsx'],
 	},
 	// resolve: {
 	// 	modulesDirectories: ['.']
@@ -98,7 +102,7 @@ module.exports = {
 				loader: 'babel-loader',
 				query:{
 		          presets:['es2015','stage-0','react'],
-				  plugins:['transform-runtime']
+				  plugins:['transform-runtime',["import", { "libraryName": "antd"}]]
 		        }
 			}
 		]
@@ -122,10 +126,15 @@ module.exports = {
 	    new ExtractTextPlugin({
 	      filename: 'css/[name].css'
 	    }),
-		// new CommonsChunkPlugin({
-		// 	name: "common.chunk"
-		// 	// chunks: ["home", "pages.chunk", "detail", "list"]
-		// })
+		new webpack.optimize.CommonsChunkPlugin({
+			name: "vendor"
+			// chunks: ["home", "pages.chunk", "detail", "list"]
+		}),
+		new webpack.DefinePlugin({
+		  "process.env": {
+		     NODE_ENV: JSON.stringify("production")
+		   }
+})
 		//
 	]
 };

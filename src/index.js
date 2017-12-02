@@ -1,4 +1,6 @@
-const { Form, Row, Col, Input, Button, Layout, Menu, Icon, Dropdown, Table, Popconfirm} = antd;
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Form, Row, Col, Input, Button, Layout, Menu, Icon, Dropdown, Table, Popconfirm} from 'antd';
 const { Header, Sider, Content } = Layout;
 import Mockdata from './module/data.js';
 
