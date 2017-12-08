@@ -3,27 +3,20 @@ var fs = require('fs')
 const webpack = require('webpack');
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-// const CommonsChunkPlugin = require("webpack/lib/optimize/CommonsChunkPlugin");
-// const CommonsChunkPlugin = require("webpack/lib/optimize/UglifyJsPlugin");
 const NamedModulesPlugin = require('webpack/lib/NamedModulesPlugin');
 
-// require("runtime-public-path-webpack-plugin");
-
-// const DynamicPublicPathPlugin = require("./webpack-dynamic.js");
-// const PUBLIC_PATH = 'likoshow4567';
 var folder = path.resolve('./src')
 
 var files = fs.readdirSync(folder);
 
-var jsFileMap = {
-	// vendor: ['antd','react','react-dom']
-}
+var jsFileMap = {};
 files.forEach(file => {
 	if (/.js$/.test(file) && file.indexOf('1') === -1) {
 		const name = file.replace(/.js$/, '')
 		jsFileMap[name] = `./src/${name}`;
 	}
 });
+// jsFileMap['vendor'] = ['antd','react','react-dom'];
 
 module.exports = {
 	// The standard entry point and output config
@@ -37,9 +30,6 @@ module.exports = {
 	resolve: {
 		extensions: ['.js', '.jsx'],
 	},
-	// resolve: {
-	// 	modulesDirectories: ['.']
-	// },
 	output: {
 		path: path.join(__dirname, './assets'), //打包输出目录
 		// 这里只是设置了一个占位符，构建的时候会用 window.publicPath + "/" 替换掉的
@@ -55,10 +45,6 @@ module.exports = {
 		loaders: [
 			{
 				test: /\.css$/,
-				// use: [
-				// 'style-loader',
-				// 'css-loader',
-				// ]
 				loader: ExtractTextPlugin.extract({
 					use: ["css-loader"],
 					fallback: 'style-loader'
@@ -66,10 +52,6 @@ module.exports = {
 			},
 			{
 				test: /\.scss$/,
-				// use: [
-				// 'style-loader',
-				// 'css-loader',
-				// ]
 				loader: ExtractTextPlugin.extract({
 					use: ["css-loader", "sass-loader"],
 					fallback: 'style-loader'
@@ -84,17 +66,6 @@ module.exports = {
 			// 	// 如下配置，将小于8192byte的图片转成base64码
 			// 	test: /\.(png|jpg|gif)$/,
 			// 	loader: 'url-loader?limit=8192&name=./static/img/[hash].[ext]'
-			// },
-			// {
-			// 	test: /\.vue$/,
-			// 	loader: 'vue-loader',
-			// 	options: {
-			// 		loaders: {
-			// 			scss: 'vue-style-loader!css-loader!sass-loader', // <style lang="scss">
-			// 			sass: 'vue-style-loader!css-loader!sass-loader?indentedSyntax', // <style lang="sass">
-			// 			css: 'vue-style-loader!css-loader'
-			// 		}
-			// 	}
 			// },
 			{
 				test: /\.js|jsx$/,
@@ -111,23 +82,12 @@ module.exports = {
 	plugins: [
 		new NamedModulesPlugin(),
 		new webpack.optimize.ModuleConcatenationPlugin(),
-		// new DynamicPublicPathPlugin({
-		// 	oldPublicPath: PUBLIC_PATH,
-		// 	publicPath: 'window.publicPath + "/"',
-		// 	outputPath: path.join(__dirname, 'assets')
-		// }),
-		// new ExtractTextPlugin('[name].css'),
-		// 	new CommonsChunkPlugin({
-		// 		minChunks: 2,
-		// 		name: "pages.chunk",
-		// 		chunks: ["home", "detail"]
-		// 	}),
-		// extract css into its own file
-	    new ExtractTextPlugin({
-	      filename: 'css/[name].css'
+		new webpack.DllReferencePlugin({
+	      context: __dirname,
+	      manifest: require('./manifest.json'),
 	    }),
 		new webpack.optimize.CommonsChunkPlugin({
-			name: "vendor",//提取公共模块到vendor.js
+			name: 'vendor',//提取公共模块到vendor.js
 			minChunks: ({ resource }) => (
 			    resource &&
 			    resource.indexOf('node_modules') >= 0 &&

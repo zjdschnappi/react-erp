@@ -1,18 +1,27 @@
 const webpack = require('webpack');
 const optoins = require('./webpack.base.js');
-optoins.plugins.push(new webpack.optimize.UglifyJsPlugin({
-	// compress: {
-	// 	properties: false,
-	// },
-	mangle: {
-		except: ['require', 'exports', 'module', '$', 'jQuery', 'tools', 'doT'],
-		// screw_ie8: false
-	},
-	sourceMap: true,
-	'output': {
-		ascii_only: true
-	}
-}))
+const os = require('os');
+const UglifyJsParallelPlugin = require('webpack-uglify-parallel');
+
+optoins.plugins.push(
+	new webpack.optimize.UglifyJsPlugin({
+		// compress: {
+		// 	properties: false,
+		// },
+		mangle: {
+			// 	except: ['require', 'exports', 'module', '$', 'jQuery', 'tools'],
+			// 	// screw_ie8: false
+			// },
+			// sourceMap: true,
+			// 'output': {
+			// 	ascii_only: true
+			// }
+			compress:{
+				warnings :false
+			}
+		}
+	})
+)
 optoins.plugins.push(
 	new webpack.DefinePlugin({
 	  "process.env": {

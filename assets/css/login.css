@@ -1,12 +1,1 @@
-#root .login-form {
-  max-width: 300px;
-  background: #fff;
-  padding: 30px;
-  margin: 0 auto;
-}
-#root .login-form-forgot {
-  float: right;
-}
-#root .login-form-button {
-  width: 100%;
-}
+.main .additional .forgot,.main .other .register{float:right}.main{width:368px;margin:0 auto}.main .tabs{padding:0 2px;margin:0 -2px}.main .tabs :global .ant-tabs-tab{font-size:16px;line-height:24px}.main .additional :global .ant-form-item-control,.main .other{line-height:22px}.main .tabs :global .ant-input-affix-wrapper .ant-input:not(:first-child){padding-left:34px}.main :global .ant-tabs .ant-tabs-bar{border-bottom:0;margin-bottom:24px;text-align:center}.main .additional,.main .other{text-align:left}.main :global .ant-form-item{margin-bottom:24px}.main .getCaptcha{display:block;width:100%}.main .additional .submit{width:100%;margin-top:24px}.main .iconAlipay,.main .iconTaobao,.main .iconWeibo{display:inline-block;width:24px;height:24px;background:url(https://gw.alipayobjects.com/zos/rmsportal/itDzjUnkelhQNsycranf.svg);margin-left:16px;vertical-align:middle;cursor:pointer}.main .iconAlipay{background-position:-24px 0}.main .iconAlipay:hover{background-position:0 0}.main .iconTaobao{background-position:-24px -24px}.main .iconTaobao:hover{background-position:0 -24px}.main .iconWeibo{background-position:-24px -48px}.main .iconWeibo:hover{background-position:0 -48px}.main .other{margin-top:24px}
