@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Form, Row, Col, Input, Button, Layout, Menu, Icon, Dropdown, Table, Popconfirm} from 'antd';
+import { Form, Row, Col, Input, Button, Layout, Menu, Icon, Dropdown, Table, Popconfirm, DatePicker} from 'antd';
 const { Header, Sider, Content } = Layout;
 import Mockdata from './module/data.js';
 
@@ -60,6 +60,21 @@ class AdvancedSearchForm extends React.Component {
         onSubmit={this.handleSearch}
       >
         <Row gutter={40}>{this.getFields()}</Row>
+        <Row gutter={40}>
+            <Col span={8} key={3}>
+                <FormItem
+                  labelCol= {{ span: 5 }}
+                  wrapperCol= {{ span: 19 }}
+                  label={`Field ${3}`}
+                  >
+
+                    <DatePicker.RangePicker
+                        format = 'YYYY/MM/DD'
+                    />
+
+                </FormItem>
+            </Col>
+        </Row>
         <Row>
           <Col span={24} style={{ textAlign: 'right' }}>
             <Button type="primary" htmlType="button" onClick={this.submitHandler}>Search</Button>
@@ -75,8 +90,8 @@ class AdvancedSearchForm extends React.Component {
 const Formdemo = Form.create()(AdvancedSearchForm)
 
 class Mtable extends React.Component {
-    constructor(props){
-        super(props)
+    constructor(){
+        super()
         this.state = {
             selectedRowKeys: [], // Check here to configure the default column
             dataSource: [],
@@ -141,107 +156,17 @@ class Mtable extends React.Component {
 
   //   loading: false,
   // };
-  onSelectChange = (selectedRowKeys) => {
-    console.log('selectedRowKeys changed: ', selectedRowKeys);
-    this.setState({ selectedRowKeys });
-  }
   handleTableChange = (pagination, filters, sorter) => {
     const pager = { ...this.state.pagination };
     pager.current = pagination.current;
     this.setState({
       pagination: pager,
     });
-    // this.fetch();
     this.props.params.submitHandler();
   }
-  // fetch = (params = {}) => {
-  //   console.log('params:', params);
-  //   this.setState({ loading: true });
-  //   let self = this;
-  //   let xhr = new XMLHttpRequest();
-  //       xhr.open('GET', 'http://mockjs');
-  //       xhr.responseType = 'json';
-  //
-  //       xhr.onload = function() {
-  //         console.log(typeof JSON.parse(xhr.response));
-  //
-  //            self.setState({
-  //              loading: false,
-  //              dataSource: JSON.parse(xhr.response)
-  //            });
-  //       };
-  //
-  //       xhr.onerror = function() {
-  //         console.log("Oops, error");
-  //       };
-  //
-  //       xhr.send();
-  //   // fetch("http://mockjs",{
-  //   //     method: "GET",
-  //   //     body: {
-  //   //         userName:'',
-  //   //         cell1:'',
-  //   //         staffLoginName:'admin',
-  //   //         qq:'',
-  //   //         gmtFirstUserRegistStart:'',
-  //   //         gmtFirstUserRegistEnd:'',
-  //   //         customerRegisterStatus:'ALL',
-  //   //         currentPage:params.page||1,
-  //   //         labelIds:''
-  //   //
-  //   //     }
-  //   // }).then(response => response.json())
-  //   //   .then(data => {
-  //   //       console.log(data)
-  //   //   })
-  //   //   .catch(e => console.log("Oops, error", e))
-  //     }
   render() {
-    const { selectedRowKeys } = this.state;
-    const rowSelection = {
-      selectedRowKeys,
-      onChange: this.onSelectChange,
-      hideDefaultSelections: true,
-      selections: [{
-        key: 'all-data',
-        text: 'Select All Data',
-        onSelect: () => {
-          this.setState({
-            selectedRowKeys: [...Array(46).keys()], // 0...45
-          });
-        },
-      }, {
-        key: 'odd',
-        text: 'Select Odd Row',
-        onSelect: (changableRowKeys) => {
-          let newSelectedRowKeys = [];
-          newSelectedRowKeys = changableRowKeys.filter((key, index) => {
-            if (index % 2 !== 0) {
-              return false;
-            }
-            return true;
-          });
-          this.setState({ selectedRowKeys: newSelectedRowKeys });
-        },
-      }, {
-        key: 'even',
-        text: 'Select Even Row',
-        onSelect: (changableRowKeys) => {
-          let newSelectedRowKeys = [];
-          newSelectedRowKeys = changableRowKeys.filter((key, index) => {
-            if (index % 2 !== 0) {
-              return true;
-            }
-            return false;
-          });
-          this.setState({ selectedRowKeys: newSelectedRowKeys });
-        },
-      }],
-      onSelection: this.onSelection,
-    };
     return (
       <Table
-        rowSelection={rowSelection}
         columns={this.columns}
         rowKey={record => record.registered}
         dataSource={this.props.params.dataSource}
@@ -254,8 +179,8 @@ class Mtable extends React.Component {
 }
 
 class App extends React.Component {
-    constructor(props){
-        super(props)
+    constructor(){
+        super()
         this.state = {
               collapsed: false,
               loading:false,

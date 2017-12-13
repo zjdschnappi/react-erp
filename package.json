@@ -37,6 +37,7 @@
     "intelli-espower-loader": "^1.0.1",
     "mocha": "^3.4.2",
     "mock": "^0.1.1",
+    "moment": "^2.19.4",
     "power-assert": "^1.4.4",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",

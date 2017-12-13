@@ -1,1 +1,875 @@
-!function(e,t){if("object"==typeof exports&&"object"==typeof module)module.exports=t();else if("function"==typeof define&&define.amd)define([],t);else{var n=t();for(var l in n)("object"==typeof exports?exports:e)[l]=n[l]}}(this,function(){return webpackJsonp([1],{"./node_modules/async-validator/es/index.js":function(e,t,n){e.exports=n("dll-reference common")(767)},"./node_modules/babel-runtime/core-js/object/get-prototype-of.js":function(e,t,n){e.exports=n("dll-reference common")(845)},"./node_modules/babel-runtime/helpers/classCallCheck.js":function(e,t,n){e.exports=n("dll-reference common")(1)},"./node_modules/babel-runtime/helpers/createClass.js":function(e,t,n){e.exports=n("dll-reference common")(7)},"./node_modules/babel-runtime/helpers/defineProperty.js":function(e,t,n){e.exports=n("dll-reference common")(9)},"./node_modules/babel-runtime/helpers/extends.js":function(e,t,n){e.exports=n("dll-reference common")(2)},"./node_modules/babel-runtime/helpers/inherits.js":function(e,t,n){e.exports=n("dll-reference common")(4)},"./node_modules/babel-runtime/helpers/objectWithoutProperties.js":function(e,t,n){e.exports=n("dll-reference common")(23)},"./node_modules/babel-runtime/helpers/possibleConstructorReturn.js":function(e,t,n){e.exports=n("dll-reference common")(3)},"./node_modules/babel-runtime/helpers/toConsumableArray.js":function(e,t,n){e.exports=n("dll-reference common")(32)},"./node_modules/babel-runtime/helpers/typeof.js":function(e,t,n){e.exports=n("dll-reference common")(21)},"./node_modules/classnames/index.js":function(e,t,n){e.exports=n("dll-reference common")(8)},"./node_modules/create-react-class/index.js":function(e,t,n){e.exports=n("dll-reference common")(16)},"./node_modules/css-animation/es/index.js":function(e,t,n){e.exports=n("dll-reference common")(158)},"./node_modules/dom-closest/index.js":function(e,t,n){e.exports=n("dll-reference common")(877)},"./node_modules/dom-scroll-into-view/lib/index.js":function(e,t,n){e.exports=n("dll-reference common")(108)},"./node_modules/hoist-non-react-statics/index.js":function(e,t,n){e.exports=n("dll-reference common")(795)},"./node_modules/lodash/get.js":function(e,t,n){e.exports=n("dll-reference common")(417)},"./node_modules/lodash/has.js":function(e,t,n){e.exports=n("dll-reference common")(171)},"./node_modules/lodash/set.js":function(e,t,n){e.exports=n("dll-reference common")(418)},"./node_modules/omit.js/es/index.js":function(e,t,n){e.exports=n("dll-reference common")(30)},"./node_modules/prop-types/index.js":function(e,t,n){e.exports=n("dll-reference common")(6)},"./node_modules/rc-animate/es/Animate.js":function(e,t,n){e.exports=n("dll-reference common")(22)},"./node_modules/rc-checkbox/es/index.js":function(e,t,n){e.exports=n("dll-reference common")(379)},"./node_modules/rc-dropdown/lib/index.js":function(e,t,n){e.exports=n("dll-reference common")(726)},"./node_modules/rc-menu/lib/index.js":function(e,t,n){e.exports=n("dll-reference common")(84)},"./node_modules/rc-pagination/es/index.js":function(e,t,n){e.exports=n("dll-reference common")(825)},"./node_modules/rc-select/es/index.js":function(e,t,n){e.exports=n("dll-reference common")(247)},"./node_modules/rc-table/es/index.js":function(e,t,n){e.exports=n("dll-reference common")(864)},"./node_modules/rc-tooltip/es/index.js":function(e,t,n){e.exports=n("dll-reference common")(812)},"./node_modules/rc-util/node_modules/shallowequal/modules/index.js":function(e,t,n){e.exports=n("dll-reference common")(666)},"./node_modules/react-dom/index.js":function(e,t,n){e.exports=n("dll-reference common")(11)},"./node_modules/react/react.js":function(e,t,n){e.exports=n("dll-reference common")(0)},"./node_modules/shallowequal/index.js":function(e,t,n){e.exports=n("dll-reference common")(55)},"./node_modules/warning/browser.js":function(e,t,n){e.exports=n("dll-reference common")(36)},"./src/index.js":function(e,t,n){"use strict";function l(e){return e&&e.__esModule?e:{default:e}}var o=n("./node_modules/antd/lib/dropdown/index.js"),a=l(o),d=n("./node_modules/antd/lib/icon/index.js"),r=l(d),s=n("./node_modules/antd/lib/menu/index.js"),u=l(s),c=n("./node_modules/antd/lib/table/index.js"),i=l(c),m=n("./node_modules/babel-runtime/helpers/toConsumableArray.js"),f=l(m),p=n("./node_modules/antd/lib/popconfirm/index.js"),h=l(p),b=n("./node_modules/antd/lib/button/index.js"),x=l(b),_=n("./node_modules/antd/lib/row/index.js"),j=l(_),y=n("./node_modules/antd/lib/col/index.js"),g=l(y),E=n("./node_modules/babel-runtime/helpers/extends.js"),S=l(E),k=n("./node_modules/antd/lib/input/index.js"),v=l(k),C=n("./node_modules/babel-runtime/core-js/object/get-prototype-of.js"),w=l(C),I=n("./node_modules/babel-runtime/helpers/classCallCheck.js"),R=l(I),H=n("./node_modules/babel-runtime/helpers/createClass.js"),D=l(H),K=n("./node_modules/babel-runtime/helpers/possibleConstructorReturn.js"),M=l(K),q=n("./node_modules/babel-runtime/helpers/inherits.js"),A=l(q),N=n("./node_modules/antd/lib/form/index.js"),F=l(N),T=n("./node_modules/antd/lib/layout/index.js"),O=l(T),P=n("./node_modules/react/react.js"),J=l(P),L=n("./node_modules/react-dom/index.js"),Q=l(L),W=n("./src/module/data.js"),z=l(W),B=O.default.Header,G=O.default.Sider,X=O.default.Content,U=F.default.Item,V=function(e){function t(){var e,n,l,o;(0,R.default)(this,t);for(var a=arguments.length,d=Array(a),r=0;r<a;r++)d[r]=arguments[r];return n=l=(0,M.default)(this,(e=t.__proto__||(0,w.default)(t)).call.apply(e,[this].concat(d))),l.handleReset=function(){l.props.form.resetFields()},l.submitHandler=function(){l.props.submitHandler()},o=n,(0,M.default)(l,o)}return(0,A.default)(t,e),(0,D.default)(t,[{key:"getFields",value:function(){var e={labelCol:{span:5},wrapperCol:{span:19}},t=[];return t.push(J.default.createElement(g.default,{span:8,key:0},J.default.createElement(U,(0,S.default)({},e,{label:"Field 0"}),J.default.createElement(v.default,{placeholder:"placeholder",name:"asds"})))),t.push(J.default.createElement(g.default,{span:8,key:1},J.default.createElement(U,(0,S.default)({},e,{label:"Field 1"}),J.default.createElement(v.default,{placeholder:"placeholder",name:"fffff"})))),t.push(J.default.createElement(g.default,{span:8,key:2},J.default.createElement(U,(0,S.default)({},e,{label:"Field 2"}),J.default.createElement(v.default,{placeholder:"placeholder",name:"ddddd"})))),t}},{key:"render",value:function(){return J.default.createElement(F.default,{className:"ant-advanced-search-form",onSubmit:this.handleSearch},J.default.createElement(j.default,{gutter:40},this.getFields()),J.default.createElement(j.default,null,J.default.createElement(g.default,{span:24,style:{textAlign:"right"}},J.default.createElement(x.default,{type:"primary",htmlType:"button",onClick:this.submitHandler},"Search"),J.default.createElement(x.default,{style:{marginLeft:8},onClick:this.handleReset},"Clear"))))}}]),t}(J.default.Component),Y=F.default.create()(V),Z=function(e){function t(e){(0,R.default)(this,t);var n=(0,M.default)(this,(t.__proto__||(0,w.default)(t)).call(this,e));return n.onDelete=function(e){n.props.onDelete(e)},n.onSelectChange=function(e){console.log("selectedRowKeys changed: ",e),n.setState({selectedRowKeys:e})},n.handleTableChange=function(e,t,l){var o=(0,S.default)({},n.state.pagination);o.current=e.current,n.setState({pagination:o}),n.props.params.submitHandler()},n.state={selectedRowKeys:[],dataSource:[],pagination:{pageSize:20}},n.columns=[{title:"ID",dataIndex:"id"},{title:"用户名",dataIndex:"username"},{title:"手机号",dataIndex:"cell"},{title:"QQ",dataIndex:"qq"},{title:"账户余额",dataIndex:"account"},{title:"注册时间",dataIndex:"time"},{title:"所属销售",dataIndex:"belong"},{title:"备注",dataIndex:"memo"},{title:"状态",dataIndex:"status"},{title:"操作",dataIndex:"action",render:function(e,t){return n.props.params.dataSource.length>1?J.default.createElement(h.default,{title:"Sure to delete?",onConfirm:function(){return n.onDelete(t.key)}},J.default.createElement("a",{href:"#"},"Delete")):null}}],n}return(0,A.default)(t,e),(0,D.default)(t,[{key:"render",value:function(){var e=this,t=this.state.selectedRowKeys,n={selectedRowKeys:t,onChange:this.onSelectChange,hideDefaultSelections:!0,selections:[{key:"all-data",text:"Select All Data",onSelect:function(){e.setState({selectedRowKeys:[].concat((0,f.default)(Array(46).keys()))})}},{key:"odd",text:"Select Odd Row",onSelect:function(t){var n=[];n=t.filter(function(e,t){return t%2==0}),e.setState({selectedRowKeys:n})}},{key:"even",text:"Select Even Row",onSelect:function(t){var n=[];n=t.filter(function(e,t){return t%2!=0}),e.setState({selectedRowKeys:n})}}],onSelection:this.onSelection};return J.default.createElement(i.default,{rowSelection:n,columns:this.columns,rowKey:function(e){return e.registered},dataSource:this.props.params.dataSource,pagination:this.state.pagination,loading:this.props.params.loading,onChange:this.handleTableChange})}}]),t}(J.default.Component),$=function(e){function t(e){(0,R.default)(this,t);var n=(0,M.default)(this,(t.__proto__||(0,w.default)(t)).call(this,e));return n.toggle=function(){n.setState({collapsed:!n.state.collapsed})},n.fetch=function(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{};console.log("params:",e),n.setState({loading:!0});var t=n,l=new XMLHttpRequest;l.open("GET","http://mockjs"),l.responseType="json",l.onload=function(){t.setState({loading:!1,dataSource:JSON.parse(l.response)})},l.onerror=function(){console.log("Oops, error")},l.send()},n.state={collapsed:!1,loading:!1,dataSource:[]},n.submitHandler=n.submitHandler.bind(n),n.fetch=n.fetch.bind(n),n.onDelete=n.onDelete.bind(n),n}return(0,A.default)(t,e),(0,D.default)(t,[{key:"onDelete",value:function(e){var t=[].concat((0,f.default)(this.state.dataSource));this.setState({dataSource:t.filter(function(t){return t.key!==e})})}},{key:"submitHandler",value:function(){this.fetch()}},{key:"componentWillMount",value:function(){Mock.mock("http://mockjs",z.default)}},{key:"render",value:function(){var e=J.default.createElement(u.default,null,J.default.createElement(u.default.Item,null,J.default.createElement("a",{target:"_blank",rel:"noopener noreferrer",href:"myInfo.html"},"个人中心")),J.default.createElement(u.default.Item,null,J.default.createElement("a",{target:"_blank",rel:"noopener noreferrer",href:""},"退出")));return J.default.createElement(O.default,null,J.default.createElement(G,{trigger:null,collapsible:!0,collapsed:this.state.collapsed},J.default.createElement("div",{className:"logo"}),J.default.createElement(u.default,{theme:"dark",mode:"inline",defaultSelectedKeys:["1"]},J.default.createElement(u.default.Item,{key:"1"},J.default.createElement(r.default,{type:"user"}),J.default.createElement("span",null,"nav 1")),J.default.createElement(u.default.Item,{key:"2"},J.default.createElement(r.default,{type:"video-camera"}),J.default.createElement("span",null,"nav 2")),J.default.createElement(u.default.Item,{key:"3"},J.default.createElement(r.default,{type:"upload"}),J.default.createElement("span",null,"nav 3")))),J.default.createElement(O.default,null,J.default.createElement(B,{style:{background:"#fff",padding:0}},J.default.createElement(r.default,{className:"trigger",type:this.state.collapsed?"menu-unfold":"menu-fold",onClick:this.toggle}),J.default.createElement("span",{className:"user-logo"},"admin"),J.default.createElement(a.default,{overlay:e},J.default.createElement("a",{className:"ant-dropdown-link",href:"#"},J.default.createElement(r.default,{type:"down"})))),J.default.createElement(X,{style:{margin:"24px 16px",padding:24,background:"#fff",minHeight:880}},J.default.createElement(Y,{submitHandler:this.submitHandler}),J.default.createElement(Z,{onDelete:this.onDelete,params:{loading:this.state.loading,dataSource:this.state.dataSource,submitHandler:this.submitHandler}}))))}}]),t}(J.default.Component);Q.default.render(J.default.createElement($,null),document.getElementById("root"))},"./src/module/data.js":function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});for(var l=[],o=0;o<100;o++)l.push({key:o,id:o,userName:"admin"+o,cell:""+(o+200),qq:""+(o+100),account:""+100*o,time:Mock.Random.date("yyyy-MM-dd"),belong:"admin"+o,memo:"hello"+o,status:o});t.default=l},"dll-reference common":function(e,t){e.exports=common}},["./src/index.js"])});
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory();
+	else if(typeof define === 'function' && define.amd)
+		define([], factory);
+	else {
+		var a = factory();
+		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
+	}
+})(this, function() {
+return webpackJsonp([0],{
+
+/***/ "./node_modules/async-validator/es/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__("dll-reference common"))(767);
+
+/***/ }),
+
+/***/ "./node_modules/babel-runtime/core-js/object/get-prototype-of.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__("dll-reference common"))(845);
+
+/***/ }),
+
+/***/ "./node_modules/babel-runtime/helpers/classCallCheck.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__("dll-reference common"))(1);
+
+/***/ }),
+
+/***/ "./node_modules/babel-runtime/helpers/createClass.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__("dll-reference common"))(7);
+
+/***/ }),
+
+/***/ "./node_modules/babel-runtime/helpers/defineProperty.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__("dll-reference common"))(9);
+
+/***/ }),
+
+/***/ "./node_modules/babel-runtime/helpers/extends.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__("dll-reference common"))(2);
+
+/***/ }),
+
+/***/ "./node_modules/babel-runtime/helpers/inherits.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__("dll-reference common"))(4);
+
+/***/ }),
+
+/***/ "./node_modules/babel-runtime/helpers/objectWithoutProperties.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__("dll-reference common"))(23);
+
+/***/ }),
+
+/***/ "./node_modules/babel-runtime/helpers/possibleConstructorReturn.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__("dll-reference common"))(3);
+
+/***/ }),
+
+/***/ "./node_modules/babel-runtime/helpers/slicedToArray.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__("dll-reference common"))(406);
+
+/***/ }),
+
+/***/ "./node_modules/babel-runtime/helpers/toConsumableArray.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__("dll-reference common"))(32);
+
+/***/ }),
+
+/***/ "./node_modules/babel-runtime/helpers/typeof.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__("dll-reference common"))(21);
+
+/***/ }),
+
+/***/ "./node_modules/classnames/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__("dll-reference common"))(8);
+
+/***/ }),
+
+/***/ "./node_modules/create-react-class/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__("dll-reference common"))(16);
+
+/***/ }),
+
+/***/ "./node_modules/css-animation/es/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__("dll-reference common"))(158);
+
+/***/ }),
+
+/***/ "./node_modules/dom-closest/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__("dll-reference common"))(877);
+
+/***/ }),
+
+/***/ "./node_modules/dom-scroll-into-view/lib/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__("dll-reference common"))(108);
+
+/***/ }),
+
+/***/ "./node_modules/hoist-non-react-statics/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__("dll-reference common"))(795);
+
+/***/ }),
+
+/***/ "./node_modules/lodash/get.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__("dll-reference common"))(417);
+
+/***/ }),
+
+/***/ "./node_modules/lodash/has.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__("dll-reference common"))(171);
+
+/***/ }),
+
+/***/ "./node_modules/lodash/set.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__("dll-reference common"))(418);
+
+/***/ }),
+
+/***/ "./node_modules/moment/locale/zh-cn.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__("dll-reference common"))(163);
+
+/***/ }),
+
+/***/ "./node_modules/moment/moment.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__("dll-reference common"))(5);
+
+/***/ }),
+
+/***/ "./node_modules/omit.js/es/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__("dll-reference common"))(30);
+
+/***/ }),
+
+/***/ "./node_modules/process/browser.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__("dll-reference common"))(134);
+
+/***/ }),
+
+/***/ "./node_modules/prop-types/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__("dll-reference common"))(6);
+
+/***/ }),
+
+/***/ "./node_modules/rc-animate/es/Animate.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__("dll-reference common"))(22);
+
+/***/ }),
+
+/***/ "./node_modules/rc-calendar/es/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__("dll-reference common"))(392);
+
+/***/ }),
+
+/***/ "./node_modules/rc-checkbox/es/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__("dll-reference common"))(379);
+
+/***/ }),
+
+/***/ "./node_modules/rc-dropdown/lib/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__("dll-reference common"))(726);
+
+/***/ }),
+
+/***/ "./node_modules/rc-menu/lib/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__("dll-reference common"))(84);
+
+/***/ }),
+
+/***/ "./node_modules/rc-pagination/es/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__("dll-reference common"))(825);
+
+/***/ }),
+
+/***/ "./node_modules/rc-select/es/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__("dll-reference common"))(247);
+
+/***/ }),
+
+/***/ "./node_modules/rc-table/es/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__("dll-reference common"))(864);
+
+/***/ }),
+
+/***/ "./node_modules/rc-tooltip/es/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__("dll-reference common"))(812);
+
+/***/ }),
+
+/***/ "./node_modules/rc-trigger/es/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__("dll-reference common"))(57);
+
+/***/ }),
+
+/***/ "./node_modules/rc-util/lib/KeyCode.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__("dll-reference common"))(70);
+
+/***/ }),
+
+/***/ "./node_modules/rc-util/lib/createChainedFunction.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__("dll-reference common"))(631);
+
+/***/ }),
+
+/***/ "./node_modules/rc-util/node_modules/shallowequal/modules/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__("dll-reference common"))(666);
+
+/***/ }),
+
+/***/ "./node_modules/react-dom/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__("dll-reference common"))(11);
+
+/***/ }),
+
+/***/ "./node_modules/react/react.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__("dll-reference common"))(0);
+
+/***/ }),
+
+/***/ "./node_modules/shallowequal/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__("dll-reference common"))(55);
+
+/***/ }),
+
+/***/ "./node_modules/warning/browser.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__("dll-reference common"))(36);
+
+/***/ }),
+
+/***/ "./src/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _dropdown = __webpack_require__("./node_modules/antd/lib/dropdown/index.js");
+
+var _dropdown2 = _interopRequireDefault(_dropdown);
+
+var _icon = __webpack_require__("./node_modules/antd/lib/icon/index.js");
+
+var _icon2 = _interopRequireDefault(_icon);
+
+var _menu = __webpack_require__("./node_modules/antd/lib/menu/index.js");
+
+var _menu2 = _interopRequireDefault(_menu);
+
+var _toConsumableArray2 = __webpack_require__("./node_modules/babel-runtime/helpers/toConsumableArray.js");
+
+var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
+
+var _table = __webpack_require__("./node_modules/antd/lib/table/index.js");
+
+var _table2 = _interopRequireDefault(_table);
+
+var _popconfirm = __webpack_require__("./node_modules/antd/lib/popconfirm/index.js");
+
+var _popconfirm2 = _interopRequireDefault(_popconfirm);
+
+var _button = __webpack_require__("./node_modules/antd/lib/button/index.js");
+
+var _button2 = _interopRequireDefault(_button);
+
+var _datePicker = __webpack_require__("./node_modules/antd/lib/date-picker/index.js");
+
+var _datePicker2 = _interopRequireDefault(_datePicker);
+
+var _row = __webpack_require__("./node_modules/antd/lib/row/index.js");
+
+var _row2 = _interopRequireDefault(_row);
+
+var _col = __webpack_require__("./node_modules/antd/lib/col/index.js");
+
+var _col2 = _interopRequireDefault(_col);
+
+var _extends2 = __webpack_require__("./node_modules/babel-runtime/helpers/extends.js");
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _input = __webpack_require__("./node_modules/antd/lib/input/index.js");
+
+var _input2 = _interopRequireDefault(_input);
+
+var _getPrototypeOf = __webpack_require__("./node_modules/babel-runtime/core-js/object/get-prototype-of.js");
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = __webpack_require__("./node_modules/babel-runtime/helpers/classCallCheck.js");
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__("./node_modules/babel-runtime/helpers/createClass.js");
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__("./node_modules/babel-runtime/helpers/possibleConstructorReturn.js");
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__("./node_modules/babel-runtime/helpers/inherits.js");
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _form = __webpack_require__("./node_modules/antd/lib/form/index.js");
+
+var _form2 = _interopRequireDefault(_form);
+
+var _layout = __webpack_require__("./node_modules/antd/lib/layout/index.js");
+
+var _layout2 = _interopRequireDefault(_layout);
+
+var _react = __webpack_require__("./node_modules/react/react.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__("./node_modules/react-dom/index.js");
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _data = __webpack_require__("./src/module/data.js");
+
+var _data2 = _interopRequireDefault(_data);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Header = _layout2.default.Header,
+    Sider = _layout2.default.Sider,
+    Content = _layout2.default.Content;
+
+
+var FormItem = _form2.default.Item;
+
+var AdvancedSearchForm = function (_React$Component) {
+  (0, _inherits3.default)(AdvancedSearchForm, _React$Component);
+
+  function AdvancedSearchForm() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
+    (0, _classCallCheck3.default)(this, AdvancedSearchForm);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = AdvancedSearchForm.__proto__ || (0, _getPrototypeOf2.default)(AdvancedSearchForm)).call.apply(_ref, [this].concat(args))), _this), _this.handleReset = function () {
+      _this.props.form.resetFields();
+    }, _this.submitHandler = function () {
+      _this.props.submitHandler();
+    }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
+  }
+
+  (0, _createClass3.default)(AdvancedSearchForm, [{
+    key: 'getFields',
+
+
+    // To generate mock Form.Item
+    value: function getFields() {
+
+      var formItemLayout = {
+        labelCol: { span: 5 },
+        wrapperCol: { span: 19 }
+      };
+      var children = [];
+      children.push(_react2.default.createElement(
+        _col2.default,
+        { span: 8, key: 0 },
+        _react2.default.createElement(
+          FormItem,
+          (0, _extends3.default)({}, formItemLayout, { label: 'Field ' + 0 }),
+          _react2.default.createElement(_input2.default, { placeholder: 'placeholder', name: 'asds' })
+        )
+      ));
+      children.push(_react2.default.createElement(
+        _col2.default,
+        { span: 8, key: 1 },
+        _react2.default.createElement(
+          FormItem,
+          (0, _extends3.default)({}, formItemLayout, { label: 'Field ' + 1 }),
+          _react2.default.createElement(_input2.default, { placeholder: 'placeholder', name: 'fffff' })
+        )
+      ));
+      children.push(_react2.default.createElement(
+        _col2.default,
+        { span: 8, key: 2 },
+        _react2.default.createElement(
+          FormItem,
+          (0, _extends3.default)({}, formItemLayout, { label: 'Field ' + 2 }),
+          _react2.default.createElement(_input2.default, { placeholder: 'placeholder', name: 'ddddd' })
+        )
+      ));
+      return children;
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        _form2.default,
+        {
+          className: 'ant-advanced-search-form',
+          onSubmit: this.handleSearch
+        },
+        _react2.default.createElement(
+          _row2.default,
+          { gutter: 40 },
+          this.getFields()
+        ),
+        _react2.default.createElement(
+          _row2.default,
+          { gutter: 40 },
+          _react2.default.createElement(
+            _col2.default,
+            { span: 8, key: 3 },
+            _react2.default.createElement(
+              FormItem,
+              {
+                labelCol: { span: 5 },
+                wrapperCol: { span: 19 },
+                label: 'Field ' + 3
+              },
+              _react2.default.createElement(_datePicker2.default.RangePicker, {
+                format: 'YYYY/MM/DD'
+              })
+            )
+          )
+        ),
+        _react2.default.createElement(
+          _row2.default,
+          null,
+          _react2.default.createElement(
+            _col2.default,
+            { span: 24, style: { textAlign: 'right' } },
+            _react2.default.createElement(
+              _button2.default,
+              { type: 'primary', htmlType: 'button', onClick: this.submitHandler },
+              'Search'
+            ),
+            _react2.default.createElement(
+              _button2.default,
+              { style: { marginLeft: 8 }, onClick: this.handleReset },
+              'Clear'
+            )
+          )
+        )
+      );
+    }
+  }]);
+  return AdvancedSearchForm;
+}(_react2.default.Component);
+
+var Formdemo = _form2.default.create()(AdvancedSearchForm);
+
+var Mtable = function (_React$Component2) {
+  (0, _inherits3.default)(Mtable, _React$Component2);
+
+  function Mtable() {
+    (0, _classCallCheck3.default)(this, Mtable);
+
+    var _this2 = (0, _possibleConstructorReturn3.default)(this, (Mtable.__proto__ || (0, _getPrototypeOf2.default)(Mtable)).call(this));
+
+    _this2.onDelete = function (key) {
+      // const dataSource = [...this.props.params.dataSource];
+      // this.setState({ dataSource: dataSource.filter(item => item.key !== key) });
+      _this2.props.onDelete(key);
+    };
+
+    _this2.handleTableChange = function (pagination, filters, sorter) {
+      var pager = (0, _extends3.default)({}, _this2.state.pagination);
+      pager.current = pagination.current;
+      _this2.setState({
+        pagination: pager
+      });
+      _this2.props.params.submitHandler();
+    };
+
+    _this2.state = {
+      selectedRowKeys: [], // Check here to configure the default column
+      dataSource: [],
+      pagination: {
+        pageSize: 20
+      }
+    };
+    _this2.columns = [{
+      title: 'ID',
+      dataIndex: 'id'
+    }, {
+      title: '用户名',
+      dataIndex: 'username'
+    }, {
+      title: '手机号',
+      dataIndex: 'cell'
+    }, {
+      title: 'QQ',
+      dataIndex: 'qq'
+    }, {
+      title: '账户余额',
+      dataIndex: 'account'
+    }, {
+      title: '注册时间',
+      dataIndex: 'time'
+    }, {
+      title: '所属销售',
+      dataIndex: 'belong'
+    }, {
+      title: '备注',
+      dataIndex: 'memo'
+    }, {
+      title: '状态',
+      dataIndex: 'status'
+    }, {
+      title: '操作',
+      dataIndex: 'action',
+      render: function render(text, record) {
+        return _this2.props.params.dataSource.length > 1 ? _react2.default.createElement(
+          _popconfirm2.default,
+          { title: 'Sure to delete?', onConfirm: function onConfirm() {
+              return _this2.onDelete(record.key);
+            } },
+          _react2.default.createElement(
+            'a',
+            { href: '#' },
+            'Delete'
+          )
+        ) : null;
+      }
+    }];
+    return _this2;
+  }
+
+  //   loading: false,
+  // };
+
+
+  (0, _createClass3.default)(Mtable, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(_table2.default, {
+        columns: this.columns,
+        rowKey: function rowKey(record) {
+          return record.registered;
+        },
+        dataSource: this.props.params.dataSource,
+        pagination: this.state.pagination,
+        loading: this.props.params.loading,
+        onChange: this.handleTableChange
+      });
+    }
+  }]);
+  return Mtable;
+}(_react2.default.Component);
+
+var App = function (_React$Component3) {
+  (0, _inherits3.default)(App, _React$Component3);
+
+  function App() {
+    (0, _classCallCheck3.default)(this, App);
+
+    var _this3 = (0, _possibleConstructorReturn3.default)(this, (App.__proto__ || (0, _getPrototypeOf2.default)(App)).call(this));
+
+    _this3.toggle = function () {
+      _this3.setState({
+        collapsed: !_this3.state.collapsed
+      });
+    };
+
+    _this3.fetch = function () {
+      var params = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+      console.log('params:', params);
+      _this3.setState({ loading: true });
+      var self = _this3;
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', 'http://mockjs');
+      xhr.responseType = 'json';
+
+      xhr.onload = function () {
+
+        self.setState({
+          loading: false,
+          dataSource: JSON.parse(xhr.response)
+        });
+      };
+
+      xhr.onerror = function () {
+        console.log("Oops, error");
+      };
+
+      xhr.send();
+      // fetch("http://mockjs",{
+      //     method: "GET",
+      //     body: {
+      //         userName:'',
+      //         cell1:'',
+      //         staffLoginName:'admin',
+      //         qq:'',
+      //         gmtFirstUserRegistStart:'',
+      //         gmtFirstUserRegistEnd:'',
+      //         customerRegisterStatus:'ALL',
+      //         currentPage:params.page||1,
+      //         labelIds:''
+      //
+      //     }
+      // }).then(response => response.json())
+      //   .then(data => {
+      //       console.log(data)
+      //   })
+      //   .catch(e => console.log("Oops, error", e))
+    };
+
+    _this3.state = {
+      collapsed: false,
+      loading: false,
+      dataSource: []
+    };
+    _this3.submitHandler = _this3.submitHandler.bind(_this3);
+    _this3.fetch = _this3.fetch.bind(_this3);
+    _this3.onDelete = _this3.onDelete.bind(_this3);
+    return _this3;
+  }
+
+  (0, _createClass3.default)(App, [{
+    key: 'onDelete',
+    value: function onDelete(key) {
+      var dataSource = [].concat((0, _toConsumableArray3.default)(this.state.dataSource));
+      this.setState({ dataSource: dataSource.filter(function (item) {
+          return item.key !== key;
+        }) });
+    }
+  }, {
+    key: 'submitHandler',
+    value: function submitHandler() {
+      this.fetch();
+    }
+  }, {
+    key: 'componentWillMount',
+    value: function componentWillMount() {
+      Mock.mock('http://mockjs', _data2.default);
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var dropMenu = _react2.default.createElement(
+        _menu2.default,
+        null,
+        _react2.default.createElement(
+          _menu2.default.Item,
+          null,
+          _react2.default.createElement(
+            'a',
+            { target: '_blank', rel: 'noopener noreferrer', href: 'myInfo.html' },
+            '\u4E2A\u4EBA\u4E2D\u5FC3'
+          )
+        ),
+        _react2.default.createElement(
+          _menu2.default.Item,
+          null,
+          _react2.default.createElement(
+            'a',
+            { target: '_blank', rel: 'noopener noreferrer', href: '' },
+            '\u9000\u51FA'
+          )
+        )
+      );
+      return _react2.default.createElement(
+        _layout2.default,
+        null,
+        _react2.default.createElement(
+          Sider,
+          {
+            trigger: null,
+            collapsible: true,
+            collapsed: this.state.collapsed
+          },
+          _react2.default.createElement('div', { className: 'logo' }),
+          _react2.default.createElement(
+            _menu2.default,
+            { theme: 'dark', mode: 'inline', defaultSelectedKeys: ['1'] },
+            _react2.default.createElement(
+              _menu2.default.Item,
+              { key: '1' },
+              _react2.default.createElement(_icon2.default, { type: 'user' }),
+              _react2.default.createElement(
+                'span',
+                null,
+                'nav 1'
+              )
+            ),
+            _react2.default.createElement(
+              _menu2.default.Item,
+              { key: '2' },
+              _react2.default.createElement(_icon2.default, { type: 'video-camera' }),
+              _react2.default.createElement(
+                'span',
+                null,
+                'nav 2'
+              )
+            ),
+            _react2.default.createElement(
+              _menu2.default.Item,
+              { key: '3' },
+              _react2.default.createElement(_icon2.default, { type: 'upload' }),
+              _react2.default.createElement(
+                'span',
+                null,
+                'nav 3'
+              )
+            )
+          )
+        ),
+        _react2.default.createElement(
+          _layout2.default,
+          null,
+          _react2.default.createElement(
+            Header,
+            { style: { background: '#fff', padding: 0 } },
+            _react2.default.createElement(_icon2.default, {
+              className: 'trigger',
+              type: this.state.collapsed ? 'menu-unfold' : 'menu-fold',
+              onClick: this.toggle
+            }),
+            _react2.default.createElement(
+              'span',
+              { className: 'user-logo' },
+              'admin'
+            ),
+            _react2.default.createElement(
+              _dropdown2.default,
+              { overlay: dropMenu },
+              _react2.default.createElement(
+                'a',
+                { className: 'ant-dropdown-link', href: '#' },
+                _react2.default.createElement(_icon2.default, { type: 'down' })
+              )
+            )
+          ),
+          _react2.default.createElement(
+            Content,
+            { style: { margin: '24px 16px', padding: 24, background: '#fff', minHeight: 880 } },
+            _react2.default.createElement(Formdemo, { submitHandler: this.submitHandler }),
+            _react2.default.createElement(Mtable, { onDelete: this.onDelete, params: { loading: this.state.loading, dataSource: this.state.dataSource, submitHandler: this.submitHandler } })
+          )
+        )
+      );
+    }
+  }]);
+  return App;
+}(_react2.default.Component);
+
+_reactDom2.default.render(_react2.default.createElement(App, null), document.getElementById('root'));
+
+/***/ }),
+
+/***/ "./src/module/data.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var datas = [];
+for (var i = 0; i < 100; i++) {
+    datas.push({
+        key: i,
+        id: i,
+        userName: 'admin' + i,
+        cell: '' + (i + 200),
+        qq: '' + (i + 100),
+        account: '' + i * 100,
+        time: Mock.Random.date('yyyy-MM-dd'),
+        belong: 'admin' + i,
+        memo: 'hello' + i,
+        status: i
+
+    });
+}
+exports.default = datas;
+
+/***/ }),
+
+/***/ "dll-reference common":
+/***/ (function(module, exports) {
+
+module.exports = common;
+
+/***/ })
+
+},["./src/index.js"]);
+});
