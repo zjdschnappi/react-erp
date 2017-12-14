@@ -42,7 +42,7 @@ module.exports = {
 		libraryTarget: "umd"
 	},
 	module: {
-		loaders: [
+		rules: [
 			{
 				test: /\.css$/,
 				loader: ExtractTextPlugin.extract({
@@ -51,12 +51,19 @@ module.exports = {
 					})
 			},
 			{
-				test: /\.scss$/,
+				test: /\.less$/,
 				loader: ExtractTextPlugin.extract({
 					use: ["css-loader", "sass-loader"],
 					fallback: 'style-loader'
 					})
 			},
+			{
+		         test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+		         loader: "url-loader?limit=10000&mimetype=application/font-woff"
+	       }, {
+		         test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+		         loader: "file-loader"
+	       },
 			// {
 			// 	test: /\.scss$/,
 			// 	loader: ExtractTextPlugin.extract("style", "css!sass")
@@ -88,11 +95,12 @@ module.exports = {
 	    }),
 		new webpack.optimize.CommonsChunkPlugin({
 			name: 'vendor',//提取公共模块到vendor.js
-			minChunks: ({ resource }) => (
-			    resource &&
-			    resource.indexOf('node_modules') >= 0 &&
-			    resource.match(/\.js$/)
-			  ),
+			// minChunks: ({ resource }) => (
+			//     resource &&
+			//     resource.indexOf('node_modules') >= 0 &&
+			//     resource.match(/\.js$/)
+			//   ),
+			minChunks:3
 		})
 		//
 	]

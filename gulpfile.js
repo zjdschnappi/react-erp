@@ -35,10 +35,13 @@ gulp.task('polyfill', function() {
 });
 var watchPath1 = [
 	'css/**/*.less',
+    '!css/import/*.less'
 ];
 gulp.task('less',function(){
 	return gulp.src(watchPath1)
-		.pipe(less())
+		.pipe(less({
+              paths: ['./css/import']
+            }))
         .pipe(cssmin())
 		.pipe(gulp.dest('./assets/css'));
 });
