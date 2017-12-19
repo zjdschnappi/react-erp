@@ -530,12 +530,3 @@
   cursor: pointer;
   font-size: 100px;
 }
-.i-block {
-  display: inline-block;
-}
-.backred {
-  background: red;
-}
-#app {
-  background: red;
-}

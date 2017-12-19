@@ -33,40 +33,39 @@ gulp.task('polyfill', function() {
 	}))
     .pipe(gulp.dest('js/libs'));
 });
-var watchPath1 = [
+var watchPath = [
 	'css/**/*.less',
-    '!css/import/*.less'
+    // '!css/import/*.less'
 ];
 gulp.task('less',function(){
-	return gulp.src(watchPath1)
+	return gulp.src(watchPath)
 		.pipe(less({
-              paths: ['./css/import']
+              // paths: ['./css/import']
             }))
+		.pipe(gulp.dest('./assets/css'));
+});
+gulp.task('build',function(){
+	var processors = [
+		autoprefixer({browsers: ['last 2 versions']}),
+	];
+	return gulp.src(watchPath)
+		.pipe(less({
+            // paths: ['./css/import']
+        }))
+		.pipe(postcss(processors))
+		.pipe(base64({
+			baseDir: './',
+			extensions: ['svg', 'png'],
+			maxImageSize: 8*1024, // bytes
+			debug: true
+		}))
         .pipe(cssmin())
 		.pipe(gulp.dest('./assets/css'));
 });
-// gulp.task('build',function(){
-// 	var processors = [
-// 		autoprefixer({browsers: ['iOS >= 7', 'Android >= 4.1']}),
-// 	];
-// 	return gulp.src(watchPath)
-// 		.pipe(less({outputStyle: 'compressed'}).on('error', less.logError))
-// 		.pipe(sassUnicode())
-// 		.pipe(postcss(processors))
-// 		// .pipe(cssnano({zindex:false}))
-// 		.pipe(base64({
-// 			baseDir: './',
-// 			// exclude: ['room-icons.png','grab-icon.png'],
-// 			extensions: ['svg', 'png'],
-// 			maxImageSize: 8*1024, // bytes
-// 			debug: true
-// 		}))
-// 		.pipe(gulp.dest('./assets/css'));
-// });
 
 gulp.task('less:watch', function () {
 	exec('gulp less', function(err) {
 		if (err) throw err;
 	});
-  gulp.watch(watchPath1, ['less']);
+  gulp.watch(watchPath, ['less']);
 });
