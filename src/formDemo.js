@@ -1,11 +1,11 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+// import React from 'react';
+// import ReactDOM from 'react-dom';
 import moment from 'moment';
 
-import {
+const {
   Form, Select, InputNumber, Switch, Radio,
   Slider, Button, Upload, Icon, Rate, DatePicker
-} from 'antd';
+} = antd;
 const FormItem = Form.Item;
 const Option = Select.Option;
 const RadioButton = Radio.Button;

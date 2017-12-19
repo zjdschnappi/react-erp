@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import { Form, Input, Tabs, Button, Icon, Checkbox, Row, Col, Alert } from 'antd';
+// import React, { Component } from 'react';
+// import ReactDOM from 'react-dom';
+const { Form, Input, Tabs, Button, Icon, Checkbox, Row, Col, Alert } = antd;
 
 const FormItem = Form.Item;
 const { TabPane } = Tabs;
 
-class Login extends Component {
+class Login extends React.Component {
   state = {
     count: 0,
     type: 'account',

@@ -1,9 +1,8 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Form, Row, Col, Input, Button, Layout, Menu, Icon, Dropdown, Table, Popconfirm, DatePicker} from 'antd';
+// import React from 'react';
+// import ReactDOM from 'react-dom';
+const { Form, Row, Col, Input, Button, Layout, Menu, Icon, Dropdown, Table, Popconfirm, DatePicker} = antd;
 const { Header, Sider, Content } = Layout;
 import Mockdata from './module/data.js';
-
 const FormItem = Form.Item;
 
 class AdvancedSearchForm extends React.Component {

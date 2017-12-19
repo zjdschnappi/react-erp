@@ -8,740 +8,12 @@
 		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
 	}
 })(this, function() {
-return webpackJsonp([2],{
+return webpackJsonp([1],{
 
-/***/ "./node_modules/antd/lib/_util/getRequestAnimationFrame.js":
+/***/ "./node_modules/babel-runtime/core-js/array/from.js":
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports['default'] = getRequestAnimationFrame;
-exports.cancelRequestAnimationFrame = cancelRequestAnimationFrame;
-var availablePrefixs = ['moz', 'ms', 'webkit'];
-function requestAnimationFramePolyfill() {
-    var lastTime = 0;
-    return function (callback) {
-        var currTime = new Date().getTime();
-        var timeToCall = Math.max(0, 16 - (currTime - lastTime));
-        var id = window.setTimeout(function () {
-            callback(currTime + timeToCall);
-        }, timeToCall);
-        lastTime = currTime + timeToCall;
-        return id;
-    };
-}
-function getRequestAnimationFrame() {
-    if (typeof window === 'undefined') {
-        return function () {};
-    }
-    if (window.requestAnimationFrame) {
-        // https://github.com/vuejs/vue/issues/4465
-        return window.requestAnimationFrame.bind(window);
-    }
-    var prefix = availablePrefixs.filter(function (key) {
-        return key + 'RequestAnimationFrame' in window;
-    })[0];
-    return prefix ? window[prefix + 'RequestAnimationFrame'] : requestAnimationFramePolyfill();
-}
-function cancelRequestAnimationFrame(id) {
-    if (typeof window === 'undefined') {
-        return null;
-    }
-    if (window.cancelAnimationFrame) {
-        return window.cancelAnimationFrame(id);
-    }
-    var prefix = availablePrefixs.filter(function (key) {
-        return key + 'CancelAnimationFrame' in window || key + 'CancelRequestAnimationFrame' in window;
-    })[0];
-    return prefix ? (window[prefix + 'CancelAnimationFrame'] || window[prefix + 'CancelRequestAnimationFrame']).call(this, id) : clearTimeout(id);
-}
-
-/***/ }),
-
-/***/ "./node_modules/antd/lib/_util/openAnimation.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _cssAnimation = __webpack_require__("./node_modules/css-animation/es/index.js");
-
-var _cssAnimation2 = _interopRequireDefault(_cssAnimation);
-
-var _getRequestAnimationFrame = __webpack_require__("./node_modules/antd/lib/_util/getRequestAnimationFrame.js");
-
-var _getRequestAnimationFrame2 = _interopRequireDefault(_getRequestAnimationFrame);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-var reqAnimFrame = (0, _getRequestAnimationFrame2['default'])();
-function animate(node, show, done) {
-    var height = void 0;
-    var requestAnimationFrameId = void 0;
-    return (0, _cssAnimation2['default'])(node, 'ant-motion-collapse', {
-        start: function start() {
-            if (!show) {
-                node.style.height = node.offsetHeight + 'px';
-                node.style.opacity = 1;
-            } else {
-                height = node.offsetHeight;
-                node.style.height = 0;
-                node.style.opacity = 0;
-            }
-        },
-        active: function active() {
-            if (requestAnimationFrameId) {
-                (0, _getRequestAnimationFrame.cancelRequestAnimationFrame)(requestAnimationFrameId);
-            }
-            requestAnimationFrameId = reqAnimFrame(function () {
-                node.style.height = (show ? height : 0) + 'px';
-                node.style.opacity = show ? 1 : 0;
-            });
-        },
-        end: function end() {
-            if (requestAnimationFrameId) {
-                (0, _getRequestAnimationFrame.cancelRequestAnimationFrame)(requestAnimationFrameId);
-            }
-            node.style.height = '';
-            node.style.opacity = '';
-            done();
-        }
-    });
-}
-var animation = {
-    enter: function enter(node, done) {
-        return animate(node, true, done);
-    },
-    leave: function leave(node, done) {
-        return animate(node, false, done);
-    },
-    appear: function appear(node, done) {
-        return animate(node, true, done);
-    }
-};
-exports['default'] = animation;
-module.exports = exports['default'];
-
-/***/ }),
-
-/***/ "./node_modules/antd/lib/modal/ActionButton.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _classCallCheck2 = __webpack_require__("./node_modules/babel-runtime/helpers/classCallCheck.js");
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = __webpack_require__("./node_modules/babel-runtime/helpers/createClass.js");
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = __webpack_require__("./node_modules/babel-runtime/helpers/possibleConstructorReturn.js");
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__("./node_modules/babel-runtime/helpers/inherits.js");
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _react = __webpack_require__("./node_modules/react/react.js");
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = __webpack_require__("./node_modules/react-dom/index.js");
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-var _button = __webpack_require__("./node_modules/antd/lib/button/index.js");
-
-var _button2 = _interopRequireDefault(_button);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-var ActionButton = function (_React$Component) {
-    (0, _inherits3['default'])(ActionButton, _React$Component);
-
-    function ActionButton(props) {
-        (0, _classCallCheck3['default'])(this, ActionButton);
-
-        var _this = (0, _possibleConstructorReturn3['default'])(this, (ActionButton.__proto__ || Object.getPrototypeOf(ActionButton)).call(this, props));
-
-        _this.onClick = function () {
-            var _this$props = _this.props,
-                actionFn = _this$props.actionFn,
-                closeModal = _this$props.closeModal;
-
-            if (actionFn) {
-                var ret = void 0;
-                if (actionFn.length) {
-                    ret = actionFn(closeModal);
-                } else {
-                    ret = actionFn();
-                    if (!ret) {
-                        closeModal();
-                    }
-                }
-                if (ret && ret.then) {
-                    _this.setState({ loading: true });
-                    ret.then(function () {
-                        // It's unnecessary to set loading=false, for the Modal will be unmounted after close.
-                        // this.setState({ loading: false });
-                        closeModal.apply(undefined, arguments);
-                    }, function () {
-                        // See: https://github.com/ant-design/ant-design/issues/6183
-                        _this.setState({ loading: false });
-                    });
-                }
-            } else {
-                closeModal();
-            }
-        };
-        _this.state = {
-            loading: false
-        };
-        return _this;
-    }
-
-    (0, _createClass3['default'])(ActionButton, [{
-        key: 'componentDidMount',
-        value: function componentDidMount() {
-            if (this.props.autoFocus) {
-                var $this = _reactDom2['default'].findDOMNode(this);
-                this.timeoutId = setTimeout(function () {
-                    return $this.focus();
-                });
-            }
-        }
-    }, {
-        key: 'componentWillUnmount',
-        value: function componentWillUnmount() {
-            clearTimeout(this.timeoutId);
-        }
-    }, {
-        key: 'render',
-        value: function render() {
-            var _props = this.props,
-                type = _props.type,
-                children = _props.children;
-
-            var loading = this.state.loading;
-            return _react2['default'].createElement(
-                _button2['default'],
-                { type: type, size: 'large', onClick: this.onClick, loading: loading },
-                children
-            );
-        }
-    }]);
-    return ActionButton;
-}(_react2['default'].Component);
-
-exports['default'] = ActionButton;
-module.exports = exports['default'];
-
-/***/ }),
-
-/***/ "./node_modules/antd/lib/modal/Modal.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _extends2 = __webpack_require__("./node_modules/babel-runtime/helpers/extends.js");
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-var _classCallCheck2 = __webpack_require__("./node_modules/babel-runtime/helpers/classCallCheck.js");
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = __webpack_require__("./node_modules/babel-runtime/helpers/createClass.js");
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = __webpack_require__("./node_modules/babel-runtime/helpers/possibleConstructorReturn.js");
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__("./node_modules/babel-runtime/helpers/inherits.js");
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _react = __webpack_require__("./node_modules/react/react.js");
-
-var _react2 = _interopRequireDefault(_react);
-
-var _rcDialog = __webpack_require__("./node_modules/rc-dialog/es/DialogWrap.js");
-
-var _rcDialog2 = _interopRequireDefault(_rcDialog);
-
-var _propTypes = __webpack_require__("./node_modules/prop-types/index.js");
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-var _addEventListener = __webpack_require__("./node_modules/rc-util/lib/Dom/addEventListener.js");
-
-var _addEventListener2 = _interopRequireDefault(_addEventListener);
-
-var _button = __webpack_require__("./node_modules/antd/lib/button/index.js");
-
-var _button2 = _interopRequireDefault(_button);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-var mousePosition = void 0;
-var mousePositionEventBinded = void 0;
-
-var Modal = function (_React$Component) {
-    (0, _inherits3['default'])(Modal, _React$Component);
-
-    function Modal() {
-        (0, _classCallCheck3['default'])(this, Modal);
-
-        var _this = (0, _possibleConstructorReturn3['default'])(this, (Modal.__proto__ || Object.getPrototypeOf(Modal)).apply(this, arguments));
-
-        _this.handleCancel = function (e) {
-            var onCancel = _this.props.onCancel;
-            if (onCancel) {
-                onCancel(e);
-            }
-        };
-        _this.handleOk = function (e) {
-            var onOk = _this.props.onOk;
-            if (onOk) {
-                onOk(e);
-            }
-        };
-        return _this;
-    }
-
-    (0, _createClass3['default'])(Modal, [{
-        key: 'componentDidMount',
-        value: function componentDidMount() {
-            if (mousePositionEventBinded) {
-                return;
-            }
-            // 只有点击事件支持从鼠标位置动画展开
-            (0, _addEventListener2['default'])(document.documentElement, 'click', function (e) {
-                mousePosition = {
-                    x: e.pageX,
-                    y: e.pageY
-                };
-                // 100ms 内发生过点击事件，则从点击位置动画展示
-                // 否则直接 zoom 展示
-                // 这样可以兼容非点击方式展开
-                setTimeout(function () {
-                    return mousePosition = null;
-                }, 100);
-            });
-            mousePositionEventBinded = true;
-        }
-    }, {
-        key: 'render',
-        value: function render() {
-            var _props = this.props,
-                okText = _props.okText,
-                okType = _props.okType,
-                cancelText = _props.cancelText,
-                confirmLoading = _props.confirmLoading,
-                footer = _props.footer,
-                visible = _props.visible;
-
-            if (this.context.antLocale && this.context.antLocale.Modal) {
-                okText = okText || this.context.antLocale.Modal.okText;
-                cancelText = cancelText || this.context.antLocale.Modal.cancelText;
-            }
-            var defaultFooter = [_react2['default'].createElement(
-                _button2['default'],
-                { key: 'cancel', size: 'large', onClick: this.handleCancel },
-                cancelText || '取消'
-            ), _react2['default'].createElement(
-                _button2['default'],
-                { key: 'confirm', type: okType, size: 'large', loading: confirmLoading, onClick: this.handleOk },
-                okText || '确定'
-            )];
-            return _react2['default'].createElement(_rcDialog2['default'], (0, _extends3['default'])({ onClose: this.handleCancel, footer: footer === undefined ? defaultFooter : footer }, this.props, { visible: visible, mousePosition: mousePosition }));
-        }
-    }]);
-    return Modal;
-}(_react2['default'].Component);
-
-exports['default'] = Modal;
-
-Modal.defaultProps = {
-    prefixCls: 'ant-modal',
-    width: 520,
-    transitionName: 'zoom',
-    maskTransitionName: 'fade',
-    confirmLoading: false,
-    visible: false,
-    okType: 'primary'
-};
-Modal.propTypes = {
-    prefixCls: _propTypes2['default'].string,
-    onOk: _propTypes2['default'].func,
-    onCancel: _propTypes2['default'].func,
-    okText: _propTypes2['default'].node,
-    cancelText: _propTypes2['default'].node,
-    width: _propTypes2['default'].oneOfType([_propTypes2['default'].number, _propTypes2['default'].string]),
-    confirmLoading: _propTypes2['default'].bool,
-    visible: _propTypes2['default'].bool,
-    align: _propTypes2['default'].object,
-    footer: _propTypes2['default'].node,
-    title: _propTypes2['default'].node,
-    closable: _propTypes2['default'].bool
-};
-Modal.contextTypes = {
-    antLocale: _propTypes2['default'].object
-};
-module.exports = exports['default'];
-
-/***/ }),
-
-/***/ "./node_modules/antd/lib/modal/confirm.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _defineProperty2 = __webpack_require__("./node_modules/babel-runtime/helpers/defineProperty.js");
-
-var _defineProperty3 = _interopRequireDefault(_defineProperty2);
-
-var _extends2 = __webpack_require__("./node_modules/babel-runtime/helpers/extends.js");
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-exports['default'] = confirm;
-
-var _react = __webpack_require__("./node_modules/react/react.js");
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = __webpack_require__("./node_modules/react-dom/index.js");
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-var _classnames = __webpack_require__("./node_modules/classnames/index.js");
-
-var _classnames2 = _interopRequireDefault(_classnames);
-
-var _icon = __webpack_require__("./node_modules/antd/lib/icon/index.js");
-
-var _icon2 = _interopRequireDefault(_icon);
-
-var _Modal = __webpack_require__("./node_modules/antd/lib/modal/Modal.js");
-
-var _Modal2 = _interopRequireDefault(_Modal);
-
-var _ActionButton = __webpack_require__("./node_modules/antd/lib/modal/ActionButton.js");
-
-var _ActionButton2 = _interopRequireDefault(_ActionButton);
-
-var _locale = __webpack_require__("./node_modules/antd/lib/modal/locale.js");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-function confirm(config) {
-    var props = (0, _extends3['default'])({ iconType: 'question-circle', okType: 'primary' }, config);
-    var prefixCls = props.prefixCls || 'ant-confirm';
-    var div = document.createElement('div');
-    document.body.appendChild(div);
-    var width = props.width || 416;
-    var style = props.style || {};
-    // 默认为 false，保持旧版默认行为
-    var maskClosable = props.maskClosable === undefined ? false : props.maskClosable;
-    // 默认为 true，保持向下兼容
-    if (!('okCancel' in props)) {
-        props.okCancel = true;
-    }
-    var runtimeLocale = (0, _locale.getConfirmLocale)();
-    props.okText = props.okText || (props.okCancel ? runtimeLocale.okText : runtimeLocale.justOkText);
-    props.cancelText = props.cancelText || runtimeLocale.cancelText;
-    function close() {
-        var unmountResult = _reactDom2['default'].unmountComponentAtNode(div);
-        if (unmountResult && div.parentNode) {
-            div.parentNode.removeChild(div);
-        }
-
-        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-            args[_key] = arguments[_key];
-        }
-
-        var triggerCancel = args && args.length && args.some(function (param) {
-            return param && param.triggerCancel;
-        });
-        if (props.onCancel && triggerCancel) {
-            props.onCancel.apply(props, args);
-        }
-    }
-    var body = _react2['default'].createElement(
-        'div',
-        { className: prefixCls + '-body' },
-        _react2['default'].createElement(_icon2['default'], { type: props.iconType }),
-        _react2['default'].createElement(
-            'span',
-            { className: prefixCls + '-title' },
-            props.title
-        ),
-        _react2['default'].createElement(
-            'div',
-            { className: prefixCls + '-content' },
-            props.content
-        )
-    );
-    var footer = null;
-    if (props.okCancel) {
-        footer = _react2['default'].createElement(
-            'div',
-            { className: prefixCls + '-btns' },
-            _react2['default'].createElement(
-                _ActionButton2['default'],
-                { actionFn: props.onCancel, closeModal: close },
-                props.cancelText
-            ),
-            _react2['default'].createElement(
-                _ActionButton2['default'],
-                { type: props.okType, actionFn: props.onOk, closeModal: close, autoFocus: true },
-                props.okText
-            )
-        );
-    } else {
-        footer = _react2['default'].createElement(
-            'div',
-            { className: prefixCls + '-btns' },
-            _react2['default'].createElement(
-                _ActionButton2['default'],
-                { type: props.okType, actionFn: props.onOk, closeModal: close, autoFocus: true },
-                props.okText
-            )
-        );
-    }
-    var classString = (0, _classnames2['default'])(prefixCls, (0, _defineProperty3['default'])({}, prefixCls + '-' + props.type, true), props.className);
-    _reactDom2['default'].render(_react2['default'].createElement(
-        _Modal2['default'],
-        { className: classString, onCancel: close.bind(this, { triggerCancel: true }), visible: true, title: '', transitionName: 'zoom', footer: '', maskTransitionName: 'fade', maskClosable: maskClosable, style: style, width: width, zIndex: props.zIndex },
-        _react2['default'].createElement(
-            'div',
-            { className: prefixCls + '-body-wrapper' },
-            body,
-            ' ',
-            footer
-        )
-    ), div);
-    return {
-        destroy: close
-    };
-}
-module.exports = exports['default'];
-
-/***/ }),
-
-/***/ "./node_modules/antd/lib/modal/index.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _extends2 = __webpack_require__("./node_modules/babel-runtime/helpers/extends.js");
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-var _Modal = __webpack_require__("./node_modules/antd/lib/modal/Modal.js");
-
-var _Modal2 = _interopRequireDefault(_Modal);
-
-var _confirm = __webpack_require__("./node_modules/antd/lib/modal/confirm.js");
-
-var _confirm2 = _interopRequireDefault(_confirm);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-_Modal2['default'].info = function (props) {
-    var config = (0, _extends3['default'])({ type: 'info', iconType: 'info-circle', okCancel: false }, props);
-    return (0, _confirm2['default'])(config);
-};
-_Modal2['default'].success = function (props) {
-    var config = (0, _extends3['default'])({ type: 'success', iconType: 'check-circle', okCancel: false }, props);
-    return (0, _confirm2['default'])(config);
-};
-_Modal2['default'].error = function (props) {
-    var config = (0, _extends3['default'])({ type: 'error', iconType: 'cross-circle', okCancel: false }, props);
-    return (0, _confirm2['default'])(config);
-};
-_Modal2['default'].warning = _Modal2['default'].warn = function (props) {
-    var config = (0, _extends3['default'])({ type: 'warning', iconType: 'exclamation-circle', okCancel: false }, props);
-    return (0, _confirm2['default'])(config);
-};
-_Modal2['default'].confirm = function (props) {
-    var config = (0, _extends3['default'])({ type: 'confirm', okCancel: true }, props);
-    return (0, _confirm2['default'])(config);
-};
-exports['default'] = _Modal2['default'];
-module.exports = exports['default'];
-
-/***/ }),
-
-/***/ "./node_modules/antd/lib/modal/locale.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _extends2 = __webpack_require__("./node_modules/babel-runtime/helpers/extends.js");
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-exports.changeConfirmLocale = changeConfirmLocale;
-exports.getConfirmLocale = getConfirmLocale;
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-var defaultLocale = {
-    okText: '确定',
-    cancelText: '取消',
-    justOkText: '知道了'
-};
-var runtimeLocale = (0, _extends3['default'])({}, defaultLocale);
-function changeConfirmLocale(newLocale) {
-    if (newLocale) {
-        runtimeLocale = (0, _extends3['default'])({}, runtimeLocale, newLocale);
-    } else {
-        runtimeLocale = (0, _extends3['default'])({}, defaultLocale);
-    }
-}
-function getConfirmLocale() {
-    return runtimeLocale;
-}
-
-/***/ }),
-
-/***/ "./node_modules/antd/lib/tree/index.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.AntTreeNode = undefined;
-
-var _extends2 = __webpack_require__("./node_modules/babel-runtime/helpers/extends.js");
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-var _classCallCheck2 = __webpack_require__("./node_modules/babel-runtime/helpers/classCallCheck.js");
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = __webpack_require__("./node_modules/babel-runtime/helpers/createClass.js");
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = __webpack_require__("./node_modules/babel-runtime/helpers/possibleConstructorReturn.js");
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__("./node_modules/babel-runtime/helpers/inherits.js");
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _react = __webpack_require__("./node_modules/react/react.js");
-
-var _react2 = _interopRequireDefault(_react);
-
-var _rcTree = __webpack_require__("./node_modules/rc-tree/es/index.js");
-
-var _rcTree2 = _interopRequireDefault(_rcTree);
-
-var _openAnimation = __webpack_require__("./node_modules/antd/lib/_util/openAnimation.js");
-
-var _openAnimation2 = _interopRequireDefault(_openAnimation);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-var AntTreeNode = exports.AntTreeNode = function (_React$Component) {
-    (0, _inherits3['default'])(AntTreeNode, _React$Component);
-
-    function AntTreeNode() {
-        (0, _classCallCheck3['default'])(this, AntTreeNode);
-        return (0, _possibleConstructorReturn3['default'])(this, (AntTreeNode.__proto__ || Object.getPrototypeOf(AntTreeNode)).apply(this, arguments));
-    }
-
-    (0, _createClass3['default'])(AntTreeNode, [{
-        key: 'render',
-        value: function render() {
-            return _react2['default'].createElement(AntTreeNode, this.props);
-        }
-    }]);
-    return AntTreeNode;
-}(_react2['default'].Component);
-
-var Tree = function (_React$Component2) {
-    (0, _inherits3['default'])(Tree, _React$Component2);
-
-    function Tree() {
-        (0, _classCallCheck3['default'])(this, Tree);
-        return (0, _possibleConstructorReturn3['default'])(this, (Tree.__proto__ || Object.getPrototypeOf(Tree)).apply(this, arguments));
-    }
-
-    (0, _createClass3['default'])(Tree, [{
-        key: 'render',
-        value: function render() {
-            var props = this.props;
-            var prefixCls = props.prefixCls,
-                className = props.className;
-
-            var checkable = props.checkable;
-            return _react2['default'].createElement(
-                _rcTree2['default'],
-                (0, _extends3['default'])({}, props, { className: className, checkable: checkable ? _react2['default'].createElement('span', { className: prefixCls + '-checkbox-inner' }) : checkable }),
-                this.props.children
-            );
-        }
-    }]);
-    return Tree;
-}(_react2['default'].Component);
-
-exports['default'] = Tree;
-
-Tree.TreeNode = _rcTree.TreeNode;
-Tree.defaultProps = {
-    prefixCls: 'ant-tree',
-    checkable: false,
-    showIcon: false,
-    openAnimation: _openAnimation2['default']
-};
+module.exports = { "default": __webpack_require__("./node_modules/core-js/library/fn/array/from.js"), __esModule: true };
 
 /***/ }),
 
@@ -749,6 +21,44 @@ Tree.defaultProps = {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = { "default": __webpack_require__("./node_modules/core-js/library/fn/promise.js"), __esModule: true };
+
+/***/ }),
+
+/***/ "./node_modules/babel-runtime/helpers/toConsumableArray.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+var _from = __webpack_require__("./node_modules/babel-runtime/core-js/array/from.js");
+
+var _from2 = _interopRequireDefault(_from);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function (arr) {
+  if (Array.isArray(arr)) {
+    for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) {
+      arr2[i] = arr[i];
+    }
+
+    return arr2;
+  } else {
+    return (0, _from2.default)(arr);
+  }
+};
+
+/***/ }),
+
+/***/ "./node_modules/core-js/library/fn/array/from.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__("./node_modules/core-js/library/modules/es6.string.iterator.js");
+__webpack_require__("./node_modules/core-js/library/modules/es6.array.from.js");
+module.exports = __webpack_require__("./node_modules/core-js/library/modules/_core.js").Array.from;
+
 
 /***/ }),
 
@@ -766,13 +76,6 @@ module.exports = __webpack_require__("./node_modules/core-js/library/modules/_co
 
 /***/ }),
 
-/***/ "./node_modules/core-js/library/modules/_a-function.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = (__webpack_require__("dll-reference common"))(562);
-
-/***/ }),
-
 /***/ "./node_modules/core-js/library/modules/_an-instance.js":
 /***/ (function(module, exports) {
 
@@ -785,59 +88,49 @@ module.exports = function (it, Constructor, name, forbiddenField) {
 
 /***/ }),
 
-/***/ "./node_modules/core-js/library/modules/_an-object.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = (__webpack_require__("dll-reference common"))(51);
-
-/***/ }),
-
 /***/ "./node_modules/core-js/library/modules/_classof.js":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__("dll-reference common"))(246);
+// getting tag from 19.1.3.6 Object.prototype.toString()
+var cof = __webpack_require__("./node_modules/core-js/library/modules/_cof.js");
+var TAG = __webpack_require__("./node_modules/core-js/library/modules/_wks.js")('toStringTag');
+// ES3 wrong here
+var ARG = cof(function () { return arguments; }()) == 'Arguments';
+
+// fallback for IE11 Script Access Denied error
+var tryGet = function (it, key) {
+  try {
+    return it[key];
+  } catch (e) { /* empty */ }
+};
+
+module.exports = function (it) {
+  var O, T, B;
+  return it === undefined ? 'Undefined' : it === null ? 'Null'
+    // @@toStringTag case
+    : typeof (T = tryGet(O = Object(it), TAG)) == 'string' ? T
+    // builtinTag case
+    : ARG ? cof(O)
+    // ES3 arguments fallback
+    : (B = cof(O)) == 'Object' && typeof O.callee == 'function' ? 'Arguments' : B;
+};
+
 
 /***/ }),
 
-/***/ "./node_modules/core-js/library/modules/_cof.js":
+/***/ "./node_modules/core-js/library/modules/_create-property.js":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__("dll-reference common"))(143);
+"use strict";
 
-/***/ }),
+var $defineProperty = __webpack_require__("./node_modules/core-js/library/modules/_object-dp.js");
+var createDesc = __webpack_require__("./node_modules/core-js/library/modules/_property-desc.js");
 
-/***/ "./node_modules/core-js/library/modules/_core.js":
-/***/ (function(module, exports, __webpack_require__) {
+module.exports = function (object, index, value) {
+  if (index in object) $defineProperty.f(object, index, createDesc(0, value));
+  else object[index] = value;
+};
 
-module.exports = (__webpack_require__("dll-reference common"))(26);
-
-/***/ }),
-
-/***/ "./node_modules/core-js/library/modules/_ctx.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = (__webpack_require__("dll-reference common"))(141);
-
-/***/ }),
-
-/***/ "./node_modules/core-js/library/modules/_descriptors.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = (__webpack_require__("dll-reference common"))(52);
-
-/***/ }),
-
-/***/ "./node_modules/core-js/library/modules/_dom-create.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = (__webpack_require__("dll-reference common"))(235);
-
-/***/ }),
-
-/***/ "./node_modules/core-js/library/modules/_export.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = (__webpack_require__("dll-reference common"))(44);
 
 /***/ }),
 
@@ -873,27 +166,6 @@ exports.RETURN = RETURN;
 
 /***/ }),
 
-/***/ "./node_modules/core-js/library/modules/_global.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = (__webpack_require__("dll-reference common"))(45);
-
-/***/ }),
-
-/***/ "./node_modules/core-js/library/modules/_hide.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = (__webpack_require__("dll-reference common"))(66);
-
-/***/ }),
-
-/***/ "./node_modules/core-js/library/modules/_html.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = (__webpack_require__("dll-reference common"))(574);
-
-/***/ }),
-
 /***/ "./node_modules/core-js/library/modules/_invoke.js":
 /***/ (function(module, exports) {
 
@@ -920,35 +192,63 @@ module.exports = function (fn, args, that) {
 /***/ "./node_modules/core-js/library/modules/_is-array-iter.js":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__("dll-reference common"))(602);
+// check on default Array iterator
+var Iterators = __webpack_require__("./node_modules/core-js/library/modules/_iterators.js");
+var ITERATOR = __webpack_require__("./node_modules/core-js/library/modules/_wks.js")('iterator');
+var ArrayProto = Array.prototype;
 
-/***/ }),
+module.exports = function (it) {
+  return it !== undefined && (Iterators.Array === it || ArrayProto[ITERATOR] === it);
+};
 
-/***/ "./node_modules/core-js/library/modules/_is-object.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = (__webpack_require__("dll-reference common"))(82);
 
 /***/ }),
 
 /***/ "./node_modules/core-js/library/modules/_iter-call.js":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__("dll-reference common"))(601);
+// call something on iterator step with safe closing on error
+var anObject = __webpack_require__("./node_modules/core-js/library/modules/_an-object.js");
+module.exports = function (iterator, fn, value, entries) {
+  try {
+    return entries ? fn(anObject(value)[0], value[1]) : fn(value);
+  // 7.4.6 IteratorClose(iterator, completion)
+  } catch (e) {
+    var ret = iterator['return'];
+    if (ret !== undefined) anObject(ret.call(iterator));
+    throw e;
+  }
+};
+
 
 /***/ }),
 
 /***/ "./node_modules/core-js/library/modules/_iter-detect.js":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__("dll-reference common"))(604);
+var ITERATOR = __webpack_require__("./node_modules/core-js/library/modules/_wks.js")('iterator');
+var SAFE_CLOSING = false;
 
-/***/ }),
+try {
+  var riter = [7][ITERATOR]();
+  riter['return'] = function () { SAFE_CLOSING = true; };
+  // eslint-disable-next-line no-throw-literal
+  Array.from(riter, function () { throw 2; });
+} catch (e) { /* empty */ }
 
-/***/ "./node_modules/core-js/library/modules/_library.js":
-/***/ (function(module, exports, __webpack_require__) {
+module.exports = function (exec, skipClosing) {
+  if (!skipClosing && !SAFE_CLOSING) return false;
+  var safe = false;
+  try {
+    var arr = [7];
+    var iter = arr[ITERATOR]();
+    iter.next = function () { return { done: safe = true }; };
+    arr[ITERATOR] = function () { return iter; };
+    exec(arr);
+  } catch (e) { /* empty */ }
+  return safe;
+};
 
-module.exports = (__webpack_require__("dll-reference common"))(150);
 
 /***/ }),
 
@@ -1053,13 +353,6 @@ module.exports.f = function (C) {
 
 /***/ }),
 
-/***/ "./node_modules/core-js/library/modules/_object-dp.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = (__webpack_require__("dll-reference common"))(46);
-
-/***/ }),
-
 /***/ "./node_modules/core-js/library/modules/_perform.js":
 /***/ (function(module, exports) {
 
@@ -1126,13 +419,6 @@ module.exports = function (KEY) {
   });
 };
 
-
-/***/ }),
-
-/***/ "./node_modules/core-js/library/modules/_set-to-string-tag.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = (__webpack_require__("dll-reference common"))(152);
 
 /***/ }),
 
@@ -1243,31 +529,63 @@ module.exports = {
 
 /***/ }),
 
-/***/ "./node_modules/core-js/library/modules/_to-length.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = (__webpack_require__("dll-reference common"))(238);
-
-/***/ }),
-
-/***/ "./node_modules/core-js/library/modules/_wks.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = (__webpack_require__("dll-reference common"))(35);
-
-/***/ }),
-
 /***/ "./node_modules/core-js/library/modules/core.get-iterator-method.js":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__("dll-reference common"))(245);
+var classof = __webpack_require__("./node_modules/core-js/library/modules/_classof.js");
+var ITERATOR = __webpack_require__("./node_modules/core-js/library/modules/_wks.js")('iterator');
+var Iterators = __webpack_require__("./node_modules/core-js/library/modules/_iterators.js");
+module.exports = __webpack_require__("./node_modules/core-js/library/modules/_core.js").getIteratorMethod = function (it) {
+  if (it != undefined) return it[ITERATOR]
+    || it['@@iterator']
+    || Iterators[classof(it)];
+};
+
 
 /***/ }),
 
-/***/ "./node_modules/core-js/library/modules/es6.object.to-string.js":
+/***/ "./node_modules/core-js/library/modules/es6.array.from.js":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__("dll-reference common"))(585);
+"use strict";
+
+var ctx = __webpack_require__("./node_modules/core-js/library/modules/_ctx.js");
+var $export = __webpack_require__("./node_modules/core-js/library/modules/_export.js");
+var toObject = __webpack_require__("./node_modules/core-js/library/modules/_to-object.js");
+var call = __webpack_require__("./node_modules/core-js/library/modules/_iter-call.js");
+var isArrayIter = __webpack_require__("./node_modules/core-js/library/modules/_is-array-iter.js");
+var toLength = __webpack_require__("./node_modules/core-js/library/modules/_to-length.js");
+var createProperty = __webpack_require__("./node_modules/core-js/library/modules/_create-property.js");
+var getIterFn = __webpack_require__("./node_modules/core-js/library/modules/core.get-iterator-method.js");
+
+$export($export.S + $export.F * !__webpack_require__("./node_modules/core-js/library/modules/_iter-detect.js")(function (iter) { Array.from(iter); }), 'Array', {
+  // 22.1.2.1 Array.from(arrayLike, mapfn = undefined, thisArg = undefined)
+  from: function from(arrayLike /* , mapfn = undefined, thisArg = undefined */) {
+    var O = toObject(arrayLike);
+    var C = typeof this == 'function' ? this : Array;
+    var aLen = arguments.length;
+    var mapfn = aLen > 1 ? arguments[1] : undefined;
+    var mapping = mapfn !== undefined;
+    var index = 0;
+    var iterFn = getIterFn(O);
+    var length, result, step, iterator;
+    if (mapping) mapfn = ctx(mapfn, aLen > 2 ? arguments[2] : undefined, 2);
+    // if object isn't iterable or it's array with default iterator - use simple case
+    if (iterFn != undefined && !(C == Array && isArrayIter(iterFn))) {
+      for (iterator = iterFn.call(O), result = new C(); !(step = iterator.next()).done; index++) {
+        createProperty(result, index, mapping ? call(iterator, mapfn, [step.value, index], true) : step.value);
+      }
+    } else {
+      length = toLength(O.length);
+      for (result = new C(length); length > index; index++) {
+        createProperty(result, index, mapping ? mapfn(O[index], index) : O[index]);
+      }
+    }
+    result.length = index;
+    return result;
+  }
+});
+
 
 /***/ }),
 
@@ -1559,13 +877,6 @@ $export($export.S + $export.F * !(USE_NATIVE && __webpack_require__("./node_modu
 
 /***/ }),
 
-/***/ "./node_modules/core-js/library/modules/es6.string.iterator.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = (__webpack_require__("dll-reference common"))(106);
-
-/***/ }),
-
 /***/ "./node_modules/core-js/library/modules/es7.promise.finally.js":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1614,47 +925,11 @@ $export($export.S, 'Promise', { 'try': function (callbackfn) {
 
 /***/ }),
 
-/***/ "./node_modules/core-js/library/modules/web.dom.iterable.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = (__webpack_require__("dll-reference common"))(153);
-
-/***/ }),
-
-/***/ "./node_modules/css-animation/es/index.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = (__webpack_require__("dll-reference common"))(158);
-
-/***/ }),
-
-/***/ "./node_modules/rc-dialog/es/DialogWrap.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = (__webpack_require__("dll-reference common"))(816);
-
-/***/ }),
-
-/***/ "./node_modules/rc-tree/es/index.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = (__webpack_require__("dll-reference common"))(437);
-
-/***/ }),
-
 /***/ "./src/tree.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-
-var _modal = __webpack_require__("./node_modules/antd/lib/modal/index.js");
-
-var _modal2 = _interopRequireDefault(_modal);
-
-var _button = __webpack_require__("./node_modules/antd/lib/button/index.js");
-
-var _button2 = _interopRequireDefault(_button);
 
 var _extends2 = __webpack_require__("./node_modules/babel-runtime/helpers/extends.js");
 
@@ -1688,21 +963,16 @@ var _inherits2 = __webpack_require__("./node_modules/babel-runtime/helpers/inher
 
 var _inherits3 = _interopRequireDefault(_inherits2);
 
-var _tree = __webpack_require__("./node_modules/antd/lib/tree/index.js");
-
-var _tree2 = _interopRequireDefault(_tree);
-
-var _react = __webpack_require__("./node_modules/react/react.js");
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = __webpack_require__("./node_modules/react-dom/index.js");
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var TreeNode = _tree2.default.TreeNode;
+// import React from 'react';
+// import ReactDOM from 'react-dom';
+var _antd = antd,
+    Modal = _antd.Modal,
+    Button = _antd.Button,
+    Tree = _antd.Tree;
+
+var TreeNode = Tree.TreeNode;
 
 var TreeDemo = function (_React$Component) {
   (0, _inherits3.default)(TreeDemo, _React$Component);
@@ -1737,13 +1007,13 @@ var TreeDemo = function (_React$Component) {
     }, _this.renderTreeNodes = function (data) {
       return data.map(function (item) {
         if (item.children) {
-          return _react2.default.createElement(
+          return React.createElement(
             TreeNode,
             { title: item.title, key: item.key, dataRef: item },
             _this.renderTreeNodes(item.children)
           );
         }
-        return _react2.default.createElement(TreeNode, (0, _extends3.default)({}, item, { dataRef: item }));
+        return React.createElement(TreeNode, (0, _extends3.default)({}, item, { dataRef: item }));
       });
     }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
   }
@@ -1751,15 +1021,15 @@ var TreeDemo = function (_React$Component) {
   (0, _createClass3.default)(TreeDemo, [{
     key: 'render',
     value: function render() {
-      return _react2.default.createElement(
-        _tree2.default,
+      return React.createElement(
+        Tree,
         { loadData: this.onLoadData },
         this.renderTreeNodes(this.state.treeData)
       );
     }
   }]);
   return TreeDemo;
-}(_react2.default.Component);
+}(React.Component);
 
 var App = function (_React$Component2) {
   (0, _inherits3.default)(App, _React$Component2);
@@ -1795,38 +1065,31 @@ var App = function (_React$Component2) {
   (0, _createClass3.default)(App, [{
     key: 'render',
     value: function render() {
-      return _react2.default.createElement(
+      return React.createElement(
         'div',
         null,
-        _react2.default.createElement(
-          _button2.default,
+        React.createElement(
+          Button,
           { type: 'primary', onClick: this.showModal },
           'Open'
         ),
-        _react2.default.createElement(
-          _modal2.default,
+        React.createElement(
+          Modal,
           {
             title: 'Basic Modal',
             visible: this.state.visible,
             onOk: this.handleOk,
             onCancel: this.handleCancel
           },
-          _react2.default.createElement(TreeDemo, null)
+          React.createElement(TreeDemo, null)
         )
       );
     }
   }]);
   return App;
-}(_react2.default.Component);
+}(React.Component);
 
-_reactDom2.default.render(_react2.default.createElement(App, null), document.getElementById('root'));
-
-/***/ }),
-
-/***/ "dll-reference common":
-/***/ (function(module, exports) {
-
-module.exports = common;
+ReactDOM.render(React.createElement(App, null), document.getElementById('root'));
 
 /***/ })
 

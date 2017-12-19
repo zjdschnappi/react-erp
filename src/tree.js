@@ -1,6 +1,6 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Modal, Button, Tree } from 'antd';
+// import React from 'react';
+// import ReactDOM from 'react-dom';
+const { Modal, Button, Tree } = antd;
 const TreeNode = Tree.TreeNode;
 
 class TreeDemo extends React.Component {

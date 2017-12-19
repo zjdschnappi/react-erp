@@ -1,7 +1,6 @@
 const webpack = require('webpack');
 const optoins = require('./webpack.base.js');
 const os = require('os');
-const UglifyJsParallelPlugin = require('webpack-uglify-parallel');
 
 optoins.plugins.push(
 	new webpack.optimize.UglifyJsPlugin({

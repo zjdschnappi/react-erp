@@ -17,15 +17,14 @@ files.forEach(file => {
 	}
 });
 // jsFileMap['vendor'] = ['antd','react','react-dom'];
-
 module.exports = {
 	// The standard entry point and output config
 	//每个页面的js文件
 	entry: jsFileMap,
 	externals: {//不打包以下模块，主要用在在scipt标签外部引入插件的时候
-		// 'react': 'React',
-   		// 'react-dom':'ReactDOM',
-		// 'antd':'antd'
+		'react': 'React',
+   		'react-dom':'ReactDOM',
+		'antd':'antd'
 	},
 	resolve: {
 		extensions: ['.js', '.jsx'],
@@ -89,10 +88,10 @@ module.exports = {
 	plugins: [
 		new NamedModulesPlugin(),
 		new webpack.optimize.ModuleConcatenationPlugin(),
-		new webpack.DllReferencePlugin({
-	      context: __dirname,
-	      manifest: require('./manifest.json'),
-	    }),
+		// new webpack.DllReferencePlugin({
+	    //   context: __dirname,
+	    //   manifest: require('./manifest.json'),
+	    // }),
 		new webpack.optimize.CommonsChunkPlugin({
 			name: 'vendor',//提取公共模块到vendor.js
 			// minChunks: ({ resource }) => (
