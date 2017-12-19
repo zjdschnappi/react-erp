@@ -10,7 +10,9 @@ var postcss = require('gulp-postcss')
 var exec = require('child_process').exec;
 
 var base64 = require('gulp-base64');
-var sassUnicode = require('gulp-sass-unicode');
+
+var notify = require('gulp-notify'),
+    plumber = require('gulp-plumber');
 
 var less = require('gulp-less');
 
@@ -39,6 +41,7 @@ var watchPath = [
 ];
 gulp.task('less',function(){
 	return gulp.src(watchPath)
+        .pipe(plumber({errorHandler: notify.onError('Error: <%= error.message %>')}))
 		.pipe(less({
               // paths: ['./css/import']
             }))

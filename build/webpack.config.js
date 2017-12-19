@@ -1,8 +1,8 @@
 const webpack = require('webpack');
-const optoins = require('./webpack.base.js');
+const options = require('./webpack.base.js');
 const os = require('os');
 
-optoins.plugins.push(
+options.plugins.push(
 	new webpack.optimize.UglifyJsPlugin({
 		// compress: {
 		// 	properties: false,
@@ -21,11 +21,11 @@ optoins.plugins.push(
 		}
 	})
 )
-optoins.plugins.push(
+options.plugins.push(
 	new webpack.DefinePlugin({
 	  "process.env": {
 		 NODE_ENV: JSON.stringify("production")
 	   }
 	})
 )
-module.exports = optoins;
+module.exports = options;

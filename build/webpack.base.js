@@ -1,5 +1,5 @@
 /*eslint quotes: [0]*/
-var fs = require('fs')
+var fs = require('fs');
 const webpack = require('webpack');
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -16,6 +16,7 @@ files.forEach(file => {
 		jsFileMap[name] = `./src/${name}`;
 	}
 });
+console.log(jsFileMap);
 // jsFileMap['vendor'] = ['antd','react','react-dom'];
 module.exports = {
 	// The standard entry point and output config
@@ -30,7 +31,7 @@ module.exports = {
 		extensions: ['.js', '.jsx'],
 	},
 	output: {
-		path: path.join(__dirname, './assets'), //打包输出目录
+		path: path.join(__dirname, '../assets'), //打包输出目录
 		// 这里只是设置了一个占位符，构建的时候会用 window.publicPath + "/" 替换掉的
 		// publicPath: PUBLIC_PATH, //webpack-dev-server访问的路径
 		filename: '[name].js', //输出文件名
@@ -52,7 +53,7 @@ module.exports = {
 			{
 				test: /\.less$/,
 				loader: ExtractTextPlugin.extract({
-					use: ["css-loader", "sass-loader"],
+					use: ["css-loader", "less-loader"],
 					fallback: 'style-loader'
 					})
 			},
