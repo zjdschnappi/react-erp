@@ -16,13 +16,14 @@ var notify = require('gulp-notify'),
 
 var less = require('gulp-less');
 
-gulp.task('polyfill', function() {
+gulp.task('lib', function() {
   return gulp.src([
-	'src/libs/es6-promise.js',
-	'src/libs/object-assign-polyfill.js',
-	'src/libs/includes-polyfill.js',
+	'src/libs/react.min.js',
+	'src/libs/react-dom.min.js',
+	'src/libs/antd.min.js',
+	'src/libs/polyfill.min.js'
 	])
-    .pipe(concat('polyfill.js'))
+    .pipe(concat('lib.js'))
 	.pipe(uglify({
 		mangle: {
 			reserved: ['require', 'exports', 'module']
@@ -33,42 +34,5 @@ gulp.task('polyfill', function() {
 	}).on('error',function(err){
 		console.log(err);
 	}))
-    .pipe(gulp.dest('js/libs'));
-});
-var watchPath = [
-	'css/**/*.less',
-    // '!css/import/*.less'
-];
-gulp.task('less',function(){
-	return gulp.src(watchPath)
-        .pipe(plumber({errorHandler: notify.onError('Error: <%= error.message %>')}))
-		.pipe(less({
-              // paths: ['./css/import']
-            }))
-		.pipe(gulp.dest('./assets/css'));
-});
-gulp.task('build',function(){
-	var processors = [
-		autoprefixer({browsers: ['last 2 versions']}),
-	];
-	return gulp.src(watchPath)
-		.pipe(less({
-            // paths: ['./css/import']
-        }))
-		.pipe(postcss(processors))
-		.pipe(base64({
-			baseDir: './',
-			extensions: ['svg', 'png'],
-			maxImageSize: 8*1024, // bytes
-			debug: true
-		}))
-        .pipe(cssmin())
-		.pipe(gulp.dest('./assets/css'));
-});
-
-gulp.task('less:watch', function () {
-	exec('gulp less', function(err) {
-		if (err) throw err;
-	});
-  gulp.watch(watchPath, ['less']);
+    .pipe(gulp.dest('js'));
 });

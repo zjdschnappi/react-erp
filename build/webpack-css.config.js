@@ -29,14 +29,14 @@ module.exports = {
         {
           test: /\.less|css$/,
           loader: Ex.extract({
-              use:['css-loader?-url','postcss-loader','less-loader'],
+              use:['css-loader?-url&minimize=true','postcss-loader','less-loader'],
               fallback: 'style-loader',
             }),
         },
-        // {
-        //     test: /\.(png|jpe?g|gif|ico)(\?\S*)?$/,
-        //     loader: "url-loader?limit=8192",
-        // },
+        {
+            test: /\.(png|jpe?g|gif|ico)(\?\S*)?$/,
+            loader: "url-loader?limit=8192",
+        },
     ]
   },
   plugins: [

@@ -43,27 +43,27 @@ module.exports = {
 	},
 	module: {
 		rules: [
-			{
-				test: /\.css$/,
-				loader: ExtractTextPlugin.extract({
-					use: ["css-loader"],
-					fallback: 'style-loader'
-					})
-			},
-			{
-				test: /\.less$/,
-				loader: ExtractTextPlugin.extract({
-					use: ["css-loader", "less-loader"],
-					fallback: 'style-loader'
-					})
-			},
-			{
-		         test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-		         loader: "url-loader?limit=10000&mimetype=application/font-woff"
-	       }, {
-		         test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-		         loader: "file-loader"
-	       },
+			// {
+			// 	test: /\.css$/,
+			// 	loader: ExtractTextPlugin.extract({
+			// 		use: ["css-loader"],
+			// 		fallback: 'style-loader'
+			// 		})
+			// },
+			// {
+			// 	test: /\.less$/,
+			// 	loader: ExtractTextPlugin.extract({
+			// 		use: ["css-loader", "less-loader"],
+			// 		fallback: 'style-loader'
+			// 		})
+			// },
+			// {
+		   //       test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+		   //       loader: "url-loader?limit=10000&mimetype=application/font-woff"
+	       // }, {
+		   //       test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+		   //       loader: "file-loader"
+	       // },
 			// {
 			// 	test: /\.scss$/,
 			// 	loader: ExtractTextPlugin.extract("style", "css!sass")

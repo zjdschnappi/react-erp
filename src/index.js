@@ -1,6 +1,6 @@
 // import React from 'react';
 // import ReactDOM from 'react-dom';
-const { Form, Row, Col, Input, Button, Layout, Menu, Icon, Dropdown, Table, Popconfirm, DatePicker} = antd;
+const { Form, Row, Col, Input, Button, Layout, Menu, Icon, Dropdown, Table, Popconfirm, DatePicker, Modal} = antd;
 const { Header, Sider, Content } = Layout;
 import Mockdata from './module/data.js';
 const FormItem = Form.Item;
@@ -208,10 +208,14 @@ class App extends React.Component {
                loading: false,
                dataSource: JSON.parse(xhr.response)
              });
+             const modal = Modal.error({
+               title: '提示',
+               content: 'errors',
+             });
         };
 
         xhr.onerror = function() {
-          console.log("Oops, error");
+
         };
 
         xhr.send();

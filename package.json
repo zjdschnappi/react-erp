@@ -5,20 +5,21 @@
   "main": "gulpfile.js",
   "scripts": {
     "dev": "webpack --watch --config ./build/webpack.dev.config.js",
-    "build": "webpack --progress --watch --config ./build/webpack.config.js",
     "dll": "webpack --progress  --config ./build/webpack-dll.config.js",
-    "css": "webpack --progress --watch --config ./build/webpack-css.config.js"
+    "css": "webpack --progress --watch --config ./build/webpack-css.config.js",
+    "build": "webpack --progress  --config ./build/webpack.config.js"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "antd": "^2.13.10",
+    "antd": "^2.13.11",
     "autoprefixer": "^7.2.3",
     "babel-core": "^6.24.1",
     "babel-loader": "^7.0.0",
     "babel-plugin-component": "^0.10.1",
     "babel-plugin-import": "^1.6.2",
     "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-polyfill": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
