@@ -11,8 +11,8 @@ var files = fs.readdirSync(folder);
 
 var jsFileMap = {};
 files.forEach(file => {
-	if (/.js$/.test(file) && file.indexOf('1') === -1) {
-		const name = file.replace(/.js$/, '')
+	if (/\.js|jsx$/.test(file)) {
+		const name = file.replace(/\.js$/, '').replace(/\.jsx$/, '')
 		jsFileMap[name] = `./src/${name}`;
 	}
 });
