@@ -1,4 +1,4 @@
-import Ueditor from './module/objectEditor';
+import Ueditor from 'module/objectEditor';
 const Klass = {
     init(){
         new Ueditor({

@@ -5,18 +5,38 @@ const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const NamedModulesPlugin = require('webpack/lib/NamedModulesPlugin');
 
-var folder = path.resolve('./src')
+const readFileList = function(path, filesList) {
+        var files = fs.readdirSync(path);
+        files.forEach(function (itm, index) {
+            var stat = fs.statSync(path + itm);
+            if (stat.isDirectory()) {
+            //递归读取文件
+                readFileList(path + itm + "/", filesList)
+            } else {
 
-var files = fs.readdirSync(folder);
+                var obj = {};//定义一个对象存放文件的路径和名字
+                obj.path = path;//路径
+                obj.filename = itm//名字
+                filesList.push(obj);
+            }
 
-var jsFileMap = {};
-files.forEach(file => {
-	if (/\.js|jsx$/.test(file)) {
-		const name = file.replace(/\.js$/, '').replace(/\.jsx$/, '')
-		jsFileMap[name] = `./src/${name}`;
+        })
+    }
+const getFileList = function (path) {
+               var filesList = [];
+               readFileList(path, filesList);
+               return filesList;
+           }
+
+const fileList = getFileList('./src/pages/');
+
+const jsFileMap = {};
+fileList.forEach(file =>{
+	if(/\.js|jsx$/.test(file.filename)){
+		let name = file.filename.replace(/\.js$/, '').replace(/\.jsx$/, '');
+		jsFileMap[name] = `${file.path}${name}`;
 	}
-});
-console.log(jsFileMap);
+})
 // jsFileMap['vendor'] = ['antd','react','react-dom'];
 module.exports = {
 	// The standard entry point and output config
@@ -28,7 +48,11 @@ module.exports = {
 		'antd':'antd'
 	},
 	resolve: {
-		extensions: ['.js', '.jsx'],
+		extensions: ['.js', '.jsx'],//自动扩展文件后缀名，意味着我们导入模块可以省略不写后缀名
+		alias: {
+			//别名配置，，方便后续直接引用别名，无须多写长长的地址
+			'module' : path.join(__dirname, '../src/module')
+		}
 	},
 	output: {
 		path: path.join(__dirname, '../assets'), //打包输出目录
