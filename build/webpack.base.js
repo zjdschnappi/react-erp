@@ -44,14 +44,17 @@ module.exports = {
 	entry: jsFileMap,
 	externals: {//不打包以下模块，主要用在在scipt标签外部引入插件的时候
 		'react': 'React',
-   		'react-dom':'ReactDOM',
+   	'react-dom':'ReactDOM',
 		'antd':'antd'
 	},
 	resolve: {
 		extensions: ['.js', '.jsx'],//自动扩展文件后缀名，意味着我们导入模块可以省略不写后缀名
 		alias: {
 			//别名配置，，方便后续直接引用别名，无须多写长长的地址
-			'module' : path.join(__dirname, '../src/module')
+			'module' : path.join(__dirname, '../src/module'),
+			'component': path.join(__dirname, '../src/component'),
+	      'css': path.join(__dirname, '../src/css'),
+	      'store': path.join(__dirname, '../src/store'),
 		}
 	},
 	output: {
@@ -102,10 +105,11 @@ module.exports = {
 				test: /\.js|jsx$/,
 				exclude: /(node_modules|bower_components)/,
 				loader: 'babel-loader',
-				query:{
-		          presets:['es2015','stage-0','react'],
-				  plugins:['transform-runtime',["import", { "libraryName": "antd"}]]
-		        }
+				// query:{
+        //   presets:['env','stage-0','react'],
+        //   plugins: ["transform-runtime", "transform-decorators-legacy"]
+        //   // plugins:['transform-runtime',["import", { "libraryName": "antd"}]]
+        // }
 			}
 		]
 	},

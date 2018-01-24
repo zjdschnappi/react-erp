@@ -7,17 +7,39 @@ var path = require('path');
 // var cssnano = require('cssnano');
 var Ex = require('extract-text-webpack-plugin');
 
-var folder = path.resolve('./src/css');
-var files = fs.readdirSync(folder);
+// var folder = path.resolve('./src/css');
+// var files = fs.readdirSync(folder);
+const readFileList = function(path, filesList) {
+        var files = fs.readdirSync(path);
+        files.forEach(function (itm, index) {
+            var stat = fs.statSync(path + itm);
+            if (stat.isDirectory()) {
+            //递归读取文件
+                readFileList(path + itm + "/", filesList)
+            } else {
 
+                var obj = {};//定义一个对象存放文件的路径和名字
+                obj.path = path;//路径
+                obj.filename = itm//名字
+                filesList.push(obj);
+            }
+
+        })
+    }
+const getFileList = function (path) {
+               var filesList = [];
+               readFileList(path, filesList);
+               return filesList;
+           }
+
+const fileList = getFileList('./src/css/');
 var cssFileMap = {};
-files.forEach(file => {
-	if (/.less$/.test(file) && file.indexOf('_') === -1) {
-		const name = file.replace(/.less$/, '')
-		cssFileMap[name] = `./src/css/${name}.less`;
+fileList.forEach(file => {
+	if (/.less$/.test(file.filename) && file.filename.indexOf('_') === -1) {
+		const name = file.filename.replace(/.less$/, '').replace(/.css$/, '')
+		cssFileMap[name] = `${file.path}${file.filename}`;
 	}
 });
-
 module.exports = {
   entry: cssFileMap,
   output: {
@@ -27,15 +49,38 @@ module.exports = {
   module: {
     rules: [
         {
-          test: /\.less|css$/,
-          loader: Ex.extract({
-              use:['css-loader?-url&minimize=true','postcss-loader','less-loader'],
-              fallback: 'style-loader',
-            }),
+          test: /\.(png|jpe?g|gif|ico)(\?\S*)?$/,
+          // loader: "url-loader?limit=8192&name=/src/img/[name].[ext]",
+          loader: [
+            {
+              loader:'url-loader',
+              options:{
+                limit: 8192,
+                name: '../img/[name].[ext]'
+              }
+            }
+          ]
         },
         {
-            test: /\.(png|jpe?g|gif|ico)(\?\S*)?$/,
-            loader: "url-loader?limit=8192",
+          test: /\.less|css$/,
+          use: Ex.extract({
+              fallback: 'style-loader',
+              use:[
+                'css-loader',
+                {
+                  loader:'postcss-loader',
+                  options: {
+                    config: {
+                      ctx: {
+                        autoprefixer: {browsers: ['last 2 versions']},
+                        cssnano: {}
+                      }
+                    }
+                  }
+                },
+                'less-loader'
+              ],
+            }),
         },
     ]
   },
